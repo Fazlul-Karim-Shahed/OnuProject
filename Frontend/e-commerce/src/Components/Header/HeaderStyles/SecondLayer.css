@@ -1,0 +1,7 @@
+
+.SecondLayerLinkHover{
+    color: rgb(255, 255, 255);
+}
+.SecondLayerLinkHover:hover{
+    color: wheat;
+}
