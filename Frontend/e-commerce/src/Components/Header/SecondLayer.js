@@ -16,7 +16,8 @@ import './HeaderStyles/SecondLayer.css'
 
 
 const mapStateToProps = (state) => ({
-  authenticated: state.authenticated
+  authenticated: state.authenticated,
+  decodedToken: state.decodedToken
 })
 
 const SecondLayer = (props) => {
@@ -27,12 +28,14 @@ const SecondLayer = (props) => {
     setOpen(!open)
   }
 
-  const Logo = 'assets/logo.png'
+  // const Logo = 'assets/logo.png'
+  const Logo = 'https://png.pngtree.com/template/20190928/ourmid/pngtree-gold-furniture-lamp-chair-interior-logo-design-template-inspirat-image_312127.jpg'
+
   return (
     <div className="" style={{ backgroundColor: '#D70F64' }} >
       <div className='container'>
         <Navbar className='py-2' expand='md'>
-          <NavbarBrand className='m-0 p-0' href='/'><img src={Logo} width='70px' alt="" /></NavbarBrand>
+          <NavbarBrand className='m-0 p-0' href='/'> <img className='img-fluid rounded' src={Logo} width='60px' height='auto' alt="" /> </NavbarBrand>
           <NavbarToggler onClick={toggle} className='me-2' />
           <Collapse isOpen={open} navbar>
             <Nav className='ms-auto' navbar>
@@ -54,6 +57,9 @@ const SecondLayer = (props) => {
                 </NavItem> : ''}
               {props.authenticated ? <NavItem >
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/logout' > Logout </Link>
+              </NavItem> : ''}
+              {props.authenticated && props.decodedToken.role === 'admin' ? <NavItem >
+                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/admin-panel' > Admin panel </Link>
               </NavItem> : ''}
             </Nav>
           </Collapse>

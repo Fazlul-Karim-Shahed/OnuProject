@@ -1,7 +1,11 @@
-
-.SecondLayerLinkHover{
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.SecondLayerLinkHover {
     color: rgb(255, 255, 255);
 }
-.SecondLayerLinkHover:hover{
+.SecondLayerLinkHover:hover {
     color: wheat;
 }

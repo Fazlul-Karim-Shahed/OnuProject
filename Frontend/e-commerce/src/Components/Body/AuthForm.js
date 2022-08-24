@@ -8,7 +8,8 @@ import './BodyStyles/Signup.css'
 import { spinner } from './Spinner'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { saveToken } from '../Functions/AuthFunctions'
+import { checkAuth, saveToken } from '../Functions/AuthFunctions'
+import { CHECK_AUTH } from '../../Redux/ActionTypes'
 
 
 const mapStateToProps = (state) => ({})
@@ -60,7 +61,14 @@ const Signup = (props) => {
                                     setErrorMessage('')
                                     setSpin(false)
                                     saveToken(data.data.value)
-                                    // navigate('/')
+                                    checkAuth().then(data => {
+                                        props.dispatch({
+                                            type: CHECK_AUTH,
+                                            value: data
+                                        })
+                                        navigate('/')
+                                    })
+                                    
                                 }
                             })
                             .catch(err => {

@@ -1,7 +1,7 @@
 
 import jwtDecode from "jwt-decode"
 
-export const saveToken = async (value) => {
+export const saveToken = (value) => {
 
     const token = localStorage.getItem('token')
     if (token) {
@@ -19,6 +19,7 @@ export const checkAuth = async () => {
     const token = localStorage.getItem('token')
     if (token) {
         let data = await jwtDecode(token)
+
         if (data) {
             let time = new Date().getTime()
             if (time < new Date(data.exp * 1000)) return true;
@@ -26,6 +27,17 @@ export const checkAuth = async () => {
         }
         else return false
     }
-    else return false
+    return false
+
+}
+
+export const tokenDecode = async () => {
+
+    const token = localStorage.getItem('token')
+    if (token && checkAuth()) {
+        const data = await jwtDecode(token)
+        return data
+    }
+    else return null
 
 }

@@ -3,11 +3,15 @@ import { connect } from 'react-redux'
 import FirstLayer from './FirstLayer'
 import SecondLayer from './SecondLayer'
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  authenticated: state.authenticated,
+  decodedToken: state.decodedToken
+})
 
 const Header = (props) => {
+
   return (
-    <div> 
+    <div>
       <FirstLayer />
       <SecondLayer />
     </div>
