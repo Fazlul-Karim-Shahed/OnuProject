@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { spinner } from '../Body/Spinner';
 import CatalogCreateModal from './AdminComponents/Catalog/CatalogCreateModal';
 import { Alert } from 'reactstrap'
+import { getCatalogApi } from '../API/CatalogApi';
 
 export default function Catalog() {
 
@@ -17,18 +18,20 @@ export default function Catalog() {
 
     useEffect(() => {
 
-        setSpin(true)
+        
         const token = localStorage.getItem('token')
         if (token != null) {
-            axios.get(process.env.REACT_APP_BACKEND_URL + '/catalog/')
-                .then(data => {
-                    setCatalog([...data.data.value])
-                    setSpin(false)
-                })
+            
+            setSpin(true)
+            getCatalogApi().then(data => {
+                setCatalog([...data.value])
+                setSpin(false)
+            })
                 .catch(err => {
                     console.log(err);
                     setSpin(false)
                 })
+
         }
 
     }, [])

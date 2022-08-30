@@ -1,5 +1,8 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import { getCatalogApi } from '../API/CatalogApi'
+import { getCategoryApi, getCategoryByCatalogApi } from '../API/CategoryApi'
+import { deleteSubCategoryApi, getSubCategoryApi } from '../API/SubCategoryApi'
 import { spinner } from '../Body/Spinner'
 import SubCategoryCreateModal from './AdminComponents/SubCategory/SubCategoryCreateModal'
 import SubCategoryEditModal from './AdminComponents/SubCategory/SubCategoryEditModal'
@@ -19,11 +22,30 @@ export default function Subcategory(props) {
   useEffect(() => {
 
     setSpin(true)
-    axios.get(process.env.REACT_APP_BACKEND_URL + '/subcategory/')
+    getSubCategoryApi()
       .then(data => {
-        // console.log(data.data);
-        setSubcategory([...data.data.value])
-        // setSpin(false)
+        setSubcategory([...data.value])
+
+        getCatalogApi()
+          .then(data => {
+            setCatalog([...data.value])
+            setSpin(false)
+
+            // getCategoryApi()
+            //   .then(data => {
+            //     setCategory([...data.value])
+            //     setSpin(false)
+            //   })
+            //   .catch(err => {
+            //     console.log(err);
+            //     setSpin(false)
+            //   })
+          })
+          .catch(err => {
+            setSpin(false)
+            console.log(err);
+          })
+
 
       })
       .catch(err => {
@@ -31,35 +53,9 @@ export default function Subcategory(props) {
         setSpin(false)
 
       })
-    // setSpin(true)
-    axios.get(process.env.REACT_APP_BACKEND_URL + '/catalog/')
-      .then(data => {
-        setCatalog([...data.data.value])
-        setSpin(false)
-      })
-      .catch(err => {
-        setSpin(false)
-        console.log(err);
-      })
 
+  }, [1])
 
-    axios.get(process.env.REACT_APP_BACKEND_URL + '/category/')
-      .then(data => {
-        // console.log(data);
-        setCategory([...data.data.value])
-        setSpin(false)
-      })
-      .catch(err => {
-        console.log(err);
-        setSpin(false)
-      })
-
-
-
-
-
-
-  }, [])
 
 
   const toggle = (mode, item) => {
@@ -70,7 +66,7 @@ export default function Subcategory(props) {
 
   const remove = (item) => {
     setSpin(true)
-    axios.delete(process.env.REACT_APP_BACKEND_URL + '/subcategory/' + item._id)
+    deleteSubCategoryApi(item._id)
       .then(data => {
         console.log(data);
         setSpin(false)
@@ -107,13 +103,9 @@ export default function Subcategory(props) {
     return <option key={Math.random()} value={item._id}>{item.name}</option>
   })
 
-  let categoryOption
-  if (!category || filter.catalogId === '') categoryOption = '';
-  else {
-    categoryOption = category.map(item => {
-      return <option key={Math.random()} value={item._id}>{item.name}</option>
-    })
-  }
+  let categoryOption = category.map(item => {
+    return <option key={Math.random()} value={item._id}>{item.name}</option>
+  })
 
   const change = (e) => {
 
@@ -124,13 +116,20 @@ export default function Subcategory(props) {
         ...filter,
         catalogId: e.target.value
       })
-      axios.get(process.env.REACT_APP_BACKEND_URL + '/category/id/' + e.target.value)
+
+      getCategoryByCatalogApi(e.target.value)
         .then(data => {
-          setCategory(data.data.value)
-          console.log(data.data);
+          console.log(data);
+          if (data.error) throw data.message
+          setCategory(data.value)
           setSpin(false)
 
         })
+        .catch(err => {
+          console.log(err)
+          setCategory([])
+        })
+
       axios.get(process.env.REACT_APP_BACKEND_URL + `/subcategory/filter/${e.target.value}`)
         .then(data => {
           setSubcategory(data.data.value)

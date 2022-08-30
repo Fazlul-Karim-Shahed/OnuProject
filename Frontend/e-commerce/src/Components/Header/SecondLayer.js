@@ -31,8 +31,19 @@ const SecondLayer = (props) => {
   // const Logo = 'assets/logo.png'
   const Logo = 'https://png.pngtree.com/template/20190928/ourmid/pngtree-gold-furniture-lamp-chair-interior-logo-design-template-inspirat-image_312127.jpg'
 
+
+  let admin
+  if (props.authenticated && props.decodedToken && props.decodedToken.hasOwnProperty('role')) {
+    if (props.decodedToken.role === 'admin') {
+
+      admin = <NavItem >
+        <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/admin-panel' > Admin panel </Link>
+      </NavItem>
+    }
+  }
+
   return (
-    <div className="" style={{ backgroundColor: '#D70F64' }} >
+    <div className="" style={{ backgroundColor: '#AB5337' }} >
       <div className='container'>
         <Navbar className='py-2' expand='md'>
           <NavbarBrand className='m-0 p-0' href='/'> <img className='img-fluid rounded' src={Logo} width='60px' height='auto' alt="" /> </NavbarBrand>
@@ -58,9 +69,7 @@ const SecondLayer = (props) => {
               {props.authenticated ? <NavItem >
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/logout' > Logout </Link>
               </NavItem> : ''}
-              {props.authenticated && props.decodedToken.role === 'admin' ? <NavItem >
-                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/admin-panel' > Admin panel </Link>
-              </NavItem> : ''}
+              {admin}
             </Nav>
           </Collapse>
         </Navbar>

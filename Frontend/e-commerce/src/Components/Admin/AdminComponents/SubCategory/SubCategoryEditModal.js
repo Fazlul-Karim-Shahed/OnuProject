@@ -46,22 +46,6 @@ export default function SubCategoryEditModal(props) {
                 })
         }
 
-        // if (e.target.name === 'categoryId') {
-        //     setFilter({
-        //         ...filter,
-        //         categoryId: e.target.value
-        //     })
-        //     setSpin(true)
-        //     axios.get(process.env.REACT_APP_BACKEND_URL + `/subcategory/filter/${filter.catalogId}/${e.target.value}`, {
-        //         catalogId: filter.catalogId,
-        //         categoryId: e.target.value
-        //     })
-        //         .then(data => {
-        //             console.log(data.data);
-        //             setSpin(false)
-        //         })
-        // }
-
         // console.log(filter);
     }
 
@@ -107,16 +91,19 @@ export default function SubCategoryEditModal(props) {
 
                     <form onSubmit={(e) => submit(e)} action="">
 
-                        <select defaultValue={props.item._id} name='catalogId' value={filter.catalogId} onChange={(e) => change(e)} className=' form-control my-2' id="">
+                        <label className='mt-3' htmlFor="catalogId">Change catalog</label>
+                        <select defaultValue={props.item._id} name='catalogId' value={filter.catalogId} onChange={(e) => change(e)} className=' form-control my-2' id="catalogId">
                             <option value=''>Change catalog</option>
                             {catalogOptions}
                         </select>
 
-                        <select name='categoryId' value={filter.categoryId} onChange={(e) => change(e)} className=' form-control my-2' id="">
+                        <label className='mt-3' htmlFor="categoryId">Change category</label>
+                        <select name='categoryId' value={filter.categoryId} onChange={(e) => change(e)} className=' form-control my-2' id="categoryId">
                             <option value=''>Change category</option>
                             {categoryOption}
                         </select>
 
+                        <label className='mt-3' htmlFor="name">Edit subcategory</label>
                         <input
                             value={filter.name}
                             onChange={e => change(e)}

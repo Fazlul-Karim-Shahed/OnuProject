@@ -4,6 +4,8 @@ import axios from 'axios'
 import { spinner } from '../Body/Spinner'
 import CategoryCreateModal from './AdminComponents/Category/CategoryCreateModal'
 import CategoryEditModal from './AdminComponents/Category/CategoryEditModal'
+import { getCatalogApi } from '../API/CatalogApi'
+import { getCategoryApi } from '../API/CategoryApi'
 
 export default function Category() {
 
@@ -20,21 +22,22 @@ export default function Category() {
         const token = localStorage.getItem('token')
         if (token != null) {
 
-            axios.get(process.env.REACT_APP_BACKEND_URL + '/catalog/')
+            getCatalogApi()
                 .then(data => {
-                    setCatalog([...data.data.value])
-                    setSpin(false)
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    setCatalog([...data.value])
+                    // setSpin(false)
 
 
-            axios.get(process.env.REACT_APP_BACKEND_URL + '/category/')
-                .then(data => {
-                    // console.log(data);
-                    setCategory([...data.data.value])
-                    setSpin(false)
+                    getCategoryApi()
+                        .then(data => {
+                            // console.log(data);
+                            setCategory([...data.value])
+                            setSpin(false)
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            setSpin(false)
+                        })
                 })
                 .catch(err => {
                     console.log(err);
