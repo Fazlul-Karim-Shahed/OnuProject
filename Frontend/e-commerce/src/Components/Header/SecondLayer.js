@@ -36,7 +36,7 @@ const SecondLayer = (props) => {
   if (props.authenticated && props.decodedToken && props.decodedToken.hasOwnProperty('role')) {
     if (props.decodedToken.role === 'admin') {
 
-      admin = <NavItem >
+      admin = <NavItem className='my-2'>
         <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/admin-panel' > Admin panel </Link>
       </NavItem>
     }
@@ -48,25 +48,27 @@ const SecondLayer = (props) => {
         <Navbar className='py-2' expand='md'>
           <NavbarBrand className='m-0 p-0' href='/'> <img className='img-fluid rounded' src={Logo} width='60px' height='auto' alt="" /> </NavbarBrand>
           <NavbarToggler onClick={toggle} className='me-2' />
-          <Collapse isOpen={open} navbar>
-            <Nav className='ms-auto' navbar>
-              <NavItem >
+          
+          <Collapse isOpen={open} navbar> 
+          <hr className='text-white fw-bolder border'/>
+            <Nav className='ms-auto my-3' navbar>
+              <NavItem className='my-2'>
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/blog' > Blog </Link>
               </NavItem>
-              <NavItem >
+              <NavItem className='my-2'>
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/show-locator' > Showroom </Link>
               </NavItem>
-              <NavItem >
+              <NavItem className='my-2'>
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/help' > Help </Link>
               </NavItem>
-              {!props.authenticated ? <NavItem >
+              {!props.authenticated ? <NavItem className='my-2'>
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/login' > Login </Link>
               </NavItem> : ''}
               {!props.authenticated ?
-                <NavItem >
+                <NavItem className='my-2'>
                   <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/signup' > Signup </Link>
                 </NavItem> : ''}
-              {props.authenticated ? <NavItem >
+              {props.authenticated ? <NavItem className='my-2'>
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/logout' > Logout </Link>
               </NavItem> : ''}
               {admin}

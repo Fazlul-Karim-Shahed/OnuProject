@@ -4,6 +4,8 @@ import { getCategoryApi, getCategoryByCatalogApi, getSubCategoryFilterApi } from
 import { getSubCategoryApi } from '../../../API/SubCategoryApi'
 import { Form, Formik } from 'formik'
 import { spinner } from '../../../Body/Spinner'
+import { createProductApi } from '../../../API/ProductApi'
+import { createFormData } from '../../../Functions/createFormData'
 
 export default function ProductCreate(props) {
 
@@ -58,12 +60,12 @@ export default function ProductCreate(props) {
 
 
     const change = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         if (e.target.name === 'photo') {
 
             setState({
                 ...state,
-                photo: [...state.photo.push(e.target.value)]
+                photo: [...state.photo.push(e.target.files[0])]
             })
         }
         else {
@@ -73,12 +75,13 @@ export default function ProductCreate(props) {
             })
         }
 
+
         if (e.target.name === 'catalogId') {
 
             setSpin(true)
             getCategoryByCatalogApi(e.target.value)
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.error) throw data.message
                     setCategory(data.value)
                     setSpin(false)
@@ -95,7 +98,7 @@ export default function ProductCreate(props) {
                 .then(data => {
                     if (data.error) throw data.message
                     setSubcategory(data.value)
-                    console.log(data);
+                    // console.log(data);
                     setSpin(false)
                 })
         }
@@ -103,7 +106,13 @@ export default function ProductCreate(props) {
 
     const submit = (e) => {
 
-        console.log(state);
+        // console.log(state);
+
+        const formData = createFormData(state)
+
+        createProductApi(formData)
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
 
         e.preventDefault()
 
@@ -131,9 +140,9 @@ export default function ProductCreate(props) {
     }
 
     return (
-        <div>
+        <div className='px-4'>
 
-            <form onSubmit={(e) => submit(e)}>
+            <form enctype="multipart/form-data" onSubmit={(e) => submit(e)}>
                 <div className='d-flex my-3' >
                     <select required onChange={e => change(e)} name='catalogId' value={state.catalogId} className="form-control w-25 d-inline mx-1">
                         <option>Select Catalog</option>
@@ -161,9 +170,9 @@ export default function ProductCreate(props) {
 
 
                 <div className="photo"></div>
-                <button className='my-3' onClick={add}>Add photo</button> <br />
+                <div className='my-3 btn btn-success btn-sm text-center' onClick={add}>Add photo</div> <br />
 
-                <button type="submit">Upload</button>
+                <button className='btn btn-primary' type="submit">Upload</button>
             </form>
 
             {spin ? spinner(true) : ''}

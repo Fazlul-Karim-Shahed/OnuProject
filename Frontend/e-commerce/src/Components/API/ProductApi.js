@@ -1,9 +1,12 @@
 import axios from 'axios'
 
-export const createProductApi = async() => {
+export const createProductApi = async (obj) => {
 
-    axios.post(process.env.REACT_APP_BACKEND_URL + '/product/create')
+    const data = axios.post(process.env.REACT_APP_BACKEND_URL + '/product/create', obj)
+        .then(data => data.data)
+        .catch(err => err)
 
-    return
+    return data
 
 }
+
