@@ -10,3 +10,14 @@ export const createProductApi = async (obj) => {
 
 }
 
+
+export const getAllProductsApi = async () => {
+
+    const data = axios.get(process.env.REACT_APP_BACKEND_URL + '/product/')
+        .then(data => data.data)
+        .catch(err => err)
+
+    return data
+
+}
+

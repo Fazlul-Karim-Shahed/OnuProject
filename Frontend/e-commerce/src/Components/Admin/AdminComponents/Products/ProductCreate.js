@@ -13,6 +13,7 @@ export default function ProductCreate(props) {
     const [category, setCategory] = useState([])
     const [catalog, setCatalog] = useState([])
     const [subCategory, setSubcategory] = useState([])
+    const [message, setMessage] = useState('')
     const [state, setState] = useState({
 
         name: '',
@@ -23,7 +24,7 @@ export default function ProductCreate(props) {
         discount: '',
         description: '',
         quantity: '',
-        photo: []
+        photo: [],
     })
 
     useEffect(() => {
@@ -111,7 +112,10 @@ export default function ProductCreate(props) {
         const formData = createFormData(state)
 
         createProductApi(formData)
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+                setMessage(data.message)
+            })
             .catch(err => console.log(err))
 
         e.preventDefault()
@@ -138,6 +142,7 @@ export default function ProductCreate(props) {
         photoDiv.appendChild(x)
 
     }
+
 
     return (
         <div className='px-4'>
@@ -166,7 +171,7 @@ export default function ProductCreate(props) {
 
                 <input placeholder='Discount (optional)' name='discount' value={state.discount} onChange={e => change(e)} className='form-control' type="number" /> <br />
 
-                <input required placeholder='Description' name='description' value={state.description} onChange={e => change(e)} className='form-control' type="text" /> <br />
+                <input required placeholder='Description' name='description' value={state.description} onChange={e => change(e)} className='form-control' type="textarea" /> <br />
 
 
                 <div className="photo"></div>
@@ -174,7 +179,7 @@ export default function ProductCreate(props) {
 
                 <button className='btn btn-primary' type="submit">Upload</button>
             </form>
-
+            {message}
             {spin ? spinner(true) : ''}
         </div>
     )
