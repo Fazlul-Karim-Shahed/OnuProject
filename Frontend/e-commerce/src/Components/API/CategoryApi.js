@@ -18,11 +18,3 @@ export const getCategoryByCatalogApi = async (id) => {
     return data
 }
 
-export const getSubCategoryFilterApi = async (catalogId, categoryId) => {
-
-    const data = axios.get(process.env.REACT_APP_BACKEND_URL + `/subcategory/filter/${catalogId}/${categoryId}`)
-        .then(data => data.data)
-        .catch(err => err)
-
-    return data
-}

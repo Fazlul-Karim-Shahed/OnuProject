@@ -33,7 +33,9 @@ export default function CatalogCreateModal(props) {
                                     props.setSpin(false)
                                     props.setMessage(data.data.message)
                                     props.setAlertOpen(true)
+                                    window.location.reload(false); 
                                     props.toggle()
+
                                 })
                                 .catch(err => {
                                     setMessage(err)

@@ -31,15 +31,6 @@ export default function Subcategory(props) {
             setCatalog([...data.value])
             setSpin(false)
 
-            // getCategoryApi()
-            //   .then(data => {
-            //     setCategory([...data.value])
-            //     setSpin(false)
-            //   })
-            //   .catch(err => {
-            //     console.log(err);
-            //     setSpin(false)
-            //   })
           })
           .catch(err => {
             setSpin(false)
@@ -161,7 +152,7 @@ export default function Subcategory(props) {
 
   return (
     <div>
-      <div className='d-flex justify-content-between'>
+      <div className='d-flex justify-content-between  my-2'>
         <div className='mt-1'>
           <span className='me-3 fw-bold'>Filter by:</span>
           <select className='mx-1' value={filter.catalogId} onChange={e => change(e)} name="catalogId" id="">

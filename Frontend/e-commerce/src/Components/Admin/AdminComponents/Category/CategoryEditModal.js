@@ -37,7 +37,7 @@ export default function CategoryEditModal(props) {
                                 .then(data => {
                                     console.log(data.data)
                                     alert(data.data.message)
-                                    // window.location.reload(false);
+                                    window.location.reload(false);
                                     setSpin(false)
 
                                 })
@@ -51,7 +51,7 @@ export default function CategoryEditModal(props) {
                         {({ values, handleChange, handleSubmit }) => (
                             <div className=''>
                                 <form className='' onSubmit={handleSubmit} action="">
-                                
+
                                     <label htmlFor="catalog" className='text-danger'>Change catalog: </label>
                                     <select
                                         onChange={handleChange}
@@ -70,7 +70,7 @@ export default function CategoryEditModal(props) {
                                         onChange={handleChange}
                                         placeholder='Enter category name'
                                         type="text" />
-                                    
+
                                     <button onClick={props.toggle} className='btn btn-success' type="submit">Submit</button>
                                 </form>
                             </div>

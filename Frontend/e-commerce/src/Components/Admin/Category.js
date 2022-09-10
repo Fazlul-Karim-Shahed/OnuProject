@@ -64,7 +64,7 @@ export default function Category() {
             axios.delete(process.env.REACT_APP_BACKEND_URL + '/category/delete/' + item._id)
                 .then(data => {
                     console.log(data.data);
-                    // window.location.reload(false);
+                    window.location.reload(false);
                     setSpin(false)
                 })
                 .catch(err => {
@@ -107,7 +107,7 @@ export default function Category() {
 
     return (
         <div>
-            <div className='text-end'> <button onClick={() => toggle('', 'create')} className='btn btn-success'>Create category</button> </div>
+            <div className='text-end  my-2'> <button onClick={() => toggle('', 'create')} className='btn btn-success'>Create category</button> </div>
             <div>
                 <table className="table table-striped table-hover my-4">
                     <thead className=' bg-dark text-white'>

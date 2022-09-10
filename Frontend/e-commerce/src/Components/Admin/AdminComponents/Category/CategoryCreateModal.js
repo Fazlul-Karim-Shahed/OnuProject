@@ -27,7 +27,7 @@ export default function CategoryCreateModal(props) {
                                 .then(data => {
                                     console.log(data.data)
                                     // props.setCategory(props.category.concat(data.data.value))
-                                    //   window.location.reload(false); 
+                                      window.location.reload(false); 
                                     props.setSpin(false)
                                 })
                                 .catch(err => {

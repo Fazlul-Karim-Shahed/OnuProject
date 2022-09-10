@@ -43,10 +43,13 @@ export default function SubCategoryCreateModal(props) {
         })
             .then(data => {
                 console.log(data.data);
+                window.location.reload(false)
+                props.toggle()
 
             })
             .catch(err => {
                 console.log(err);
+                props.toggle()
             })
 
 

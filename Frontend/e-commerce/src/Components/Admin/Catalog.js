@@ -18,10 +18,10 @@ export default function Catalog() {
 
     useEffect(() => {
 
-        
+
         const token = localStorage.getItem('token')
         if (token != null) {
-            
+
             setSpin(true)
             getCatalogApi().then(data => {
                 setCatalog([...data.value])
@@ -114,21 +114,18 @@ export default function Catalog() {
         showCatalog = catalog.map((item, index) => {
             // document.querySelectorAll('.inp')[index].classList.add('d-none')
             return (
-                <div key={Math.random()} className='border rounded my-2 p-3 d-flex justify-content-between'>
-                    <div>
-                        <div className='mt-2'>{item.name}</div>
+                <tr key={Math.random()}>
+                    <td><p >{item.name}</p>
                         <div className='mt-2 inp d-none d-flex'>
                             <div>
                                 <input className='input' type="text" name="" id="input" />
                             </div>
                             <button onClick={() => update(item, index)} className='btn btn-sm btn-outline-success mx-2'>update</button>
                         </div>
-                    </div>
-                    <div>
-                        <button onClick={() => edit(item, index)} className='btn btn-success mx-3'>Edit</button>
-                        <button onClick={() => remove(item)} className='btn btn-danger'>Remove</button>
-                    </div>
-                </div>
+                    </td>
+                    <td className='text-center'><button onClick={() => edit(item, index)} className='btn btn-success mx-3'>Edit</button></td>
+                    <td className='text-center'><button onClick={() => remove(item)} className='btn btn-danger'>Remove</button></td>
+                </tr>
             )
         })
     }
@@ -142,7 +139,19 @@ export default function Catalog() {
             <div className='text-end my-2'>
                 <button onClick={create} className='btn btn-primary'>Create Catalog</button>
             </div>
-            <div>{showCatalog}</div>
+            <div>
+                <table className="table table-striped table-hover my-4">
+                    <thead className=' bg-dark text-white'>
+                        <tr>
+                            <th scope='col'>Category</th>
+                            <th scope='col' colSpan={2}></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {showCatalog}
+                    </tbody>
+                </table>
+            </div>
             <CatalogCreateModal setAlertOpen={setAlertOpen} setMessage={setMessage} setSpin={setSpin} open={open} toggle={toggle} />
             {spin ? spinner(true) : spinner(false)}
         </div>

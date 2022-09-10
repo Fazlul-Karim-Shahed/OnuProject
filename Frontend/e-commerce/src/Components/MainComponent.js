@@ -9,7 +9,7 @@ import Header from './Header/Header'
 
 const mapStateToProps = (state) => {
 
-    console.log(state);
+    // console.log(state);
     return {
         authenticated: state.authenticated,
         decodedToken: state.decodedToken
