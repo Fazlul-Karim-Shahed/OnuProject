@@ -32,10 +32,12 @@ export const getOneProductApi = async (id) => {
 }
 
 
-export const updateOneProductApi = async (id, obj) => {
+export const updateOneProductApi = async (id, obj, arr) => {
 
     console.log(obj);
-    const data = axios.put(process.env.REACT_APP_BACKEND_URL + '/product/' + id, obj)
+    const data = axios.put(process.env.REACT_APP_BACKEND_URL + '/product/' + id, obj, {
+        headers: { arr: arr }
+    })
         .then(data => data.data)
         .catch(err => err)
     return data

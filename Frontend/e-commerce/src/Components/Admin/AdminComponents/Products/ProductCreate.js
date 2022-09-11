@@ -5,7 +5,7 @@ import { getSubCategoryApi, getSubCategoryFilterApi } from '../../../API/SubCate
 import { Form, Formik } from 'formik'
 import { spinner } from '../../../Body/Spinner'
 import { createProductApi } from '../../../API/ProductApi'
-import { createFormData } from '../../../Functions/createFormData'
+import { createFormData } from '../../AdminFunctions/createFormData'
 
 export default function ProductCreate(props) {
 
@@ -107,7 +107,7 @@ export default function ProductCreate(props) {
 
     const submit = (e) => {
 
-        // console.log(state);
+        console.log(state);
 
         const formData = createFormData(state)
 
@@ -171,7 +171,7 @@ export default function ProductCreate(props) {
 
                 <input placeholder='Discount (optional)' name='discount' value={state.discount} onChange={e => change(e)} className='form-control' type="number" /> <br />
 
-                <input required placeholder='Description' name='description' value={state.description} onChange={e => change(e)} className='form-control' type="textarea" /> <br />
+                <textarea required placeholder='Description' name='description' value={state.description} onChange={e => change(e)} className='form-control'/> <br />
 
 
                 <div className="photo"></div>

@@ -33,6 +33,7 @@ const Body = (props) => {
                     <Route path='products/detail/:id' element={<ProductDetails />} />
                     <Route path='products/create-product' element={<ProductCreate />} />
                 </Route>
+                
         }
     }
 

@@ -1,66 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getOneProductApi, updateOneProductApi } from '../../../API/ProductApi';
-import { useField, Form, FormikProps, Formik } from 'formik';
-import { getCatalogApi } from '../../../API/CatalogApi';
-import { getCategoryByCatalogApi } from '../../../API/CategoryApi';
+import { Formik } from 'formik';
+import { updateProductFormData } from '../../AdminFunctions/createFormData';
+import CreateFinishingModal from './CreateFinishingModal';
+import CreateSizeModal from './CreateSizeModal';
+import CreatePartsInfoModal from './CreatePartsInfoModal';
+import CreateCustomModal from './CreateCustomModal';
+import CreateFinishingColorModal from './CreateFinishingColorModal';
 
 export default function ProductDetails() {
 
-    const [catalog, setCatalog] = useState([])
-    const [category, setCategory] = useState([])
-    const [subCategory, setSubcategory] = useState([])
+
     const [product, setProduct] = useState(null)
     const [photoArr, setPhotoArr] = useState([])
+    const [deletedPhotoArr, setDeletedPhotoArr] = useState([])
+    const [mode, setMode] = useState('')
+    const [open, setOpen] = useState(false)
 
     let { id } = useParams()
 
     useEffect(() => {
         getOneProductApi(id).then(data => {
             setProduct(data.value)
-
-            getCategoryByCatalogApi(data.value.catalogId._id)
-                .then(data => setCategory(data.value))
         })
             .catch(err => {
                 console.log(err);
             })
 
-        getCatalogApi().then(data => {
-            // console.log(data.value);
-            setCatalog(data.value)
-        })
-
-
     }, [])
 
-    if (product == null) return <div></div>
+    if (product == null) return <div>Not found</div>
 
-    const getCatalog = (e) => {
-        console.log(e.target.value);
-        getCategoryByCatalogApi(e.target.value)
-            .then(data => {
-                console.log(data);
-                setCategory(data.value)
-            })
-    }
-
-    let catalogOptions = catalog.map(item => {
-        return <option key={Math.random()} value={item._id}>{item.name}</option>
-    })
-
-    let categoryOption = category.map(item => {
-        return <option key={Math.random()} value={item._id}>{item.name}</option>
-    })
-
-    let subCategoryOption = subCategory.map(item => {
-        return <option key={Math.random()} value={item._id}>{item.name}</option>
-    })
-
-
-    const imgIndex = (index) => {
-
-    }
 
     const hoverImg = index => {
 
@@ -77,9 +48,12 @@ export default function ProductDetails() {
         document.getElementsByClassName('imageOpc')[index].classList.remove('opacity-50')
     }
 
-    const removeImg = index => {
+    const removeImg = (id, index) => {
         product.photo.splice(index, 1)
         setProduct({ ...product })
+        deletedPhotoArr.push(id)
+        setDeletedPhotoArr([...deletedPhotoArr])
+
     }
 
     let photos = product.photo.map((item, index) => {
@@ -90,39 +64,60 @@ export default function ProductDetails() {
         return (
             <div onMouseOver={() => hoverImg(index)} onMouseOut={() => mouseOutImg(index)} className='position-relative d-inline' key={Math.random()}>
                 <img className='px-1 opacity-100 imageOpc' src={src} width='15%' alt="" />
-                <span onClick={() => removeImg(index)} style={{ cursor: 'pointer', left: '30%', top: '0%' }} className='imgHover position-absolute bg-danger text-white p-2 small d-none'>remove</span>
+                <span onClick={() => removeImg(item._id, index)} style={{ cursor: 'pointer', left: '30%', top: '0%' }} className='imgHover position-absolute bg-danger text-white p-2 small d-none'>remove</span>
             </div>
         )
-
 
     })
 
     const addPhoto = e => {
-        console.log(e.target.value);
-        setPhotoArr([...photoArr.push(e.target.value)])
+        photoArr.push(e.target.files[0])
+
     }
 
-    const addPhotoDiv = document.getElementsByClassName('addPhotoDiv')[0]
+
+
     const add = () => {
+
+        let addPhotoDiv = document.getElementsByClassName('addPhotoDiv')[0]
 
         let inp = document.createElement('input')
         inp.classList.add('photoInp', 'form-control', 'w-50', 'd-inline', 'my-2')
         inp.onchange = (e) => addPhoto(e)
         inp.setAttribute('type', 'file')
-        inp.setAttribute('name', 'photo')
-
-
-        let x = document.createElement('div')
-        x.classList.add('xBtn', 'btn')
-        x.appendChild(document.createTextNode('X'))
+        inp.setAttribute('name', 'addedPhoto')
+        let br = document.createElement('br')
 
         addPhotoDiv.appendChild(inp)
-        addPhotoDiv.appendChild(x)
+        addPhotoDiv.appendChild(br)
 
+
+
+    }
+
+
+    const deleteProduct = () => {
+        alert('Are you sure? ')
+    }
+
+    const toggle = () => setOpen(!open)
+
+    const propertyModal = str => {
+        setMode(str)
+        setOpen(!open)
     }
 
     return (
         <div className='mt-4'>
+
+            <div className='my-3 text-end'>
+                <button onClick={() => propertyModal('finishing')} className='mx-2'>Create Finishing</button>
+                <button onClick={() => propertyModal('finishingColor')} className='mx-2'>Create Finishing Color</button>
+                <button onClick={() => propertyModal('size')} className='mx-2'>Create Size</button>
+                <button onClick={() => propertyModal('partsInfo')} className='mx-2'>Create Parts Info</button>
+                <button onClick={() => propertyModal('custom')} className='mx-2'>Create custom</button>
+            </div>
+            <br />
             <Formik
 
                 initialValues={{
@@ -134,56 +129,75 @@ export default function ProductDetails() {
                     price: product.price,
                     discount: product.discount,
                     description: product.description,
-                    photo: [...product.photo, photoArr]
+                    addedPhoto: photoArr,
 
                 }}
 
                 onSubmit={values => {
-                    
-                    updateOneProductApi(id, values).then(data => {
+
+                    console.log(deletedPhotoArr)
+                    const formData = updateProductFormData(values)
+                    updateOneProductApi(id, formData, deletedPhotoArr).then(data => {
                         console.log(data)
                     })
-                    .catch(err => console.log(err))
+                        .catch(err => console.log(err))
 
                 }}
 
             >
 
                 {({ values, handleChange, handleSubmit }) => (
-                    <form onSubmit={handleSubmit}>
-                        <input placeholder='Product name' name='name' value={values.name} onChange={handleChange} className='form-control' type="text" /> <br />
+                    <form id='productUpdateForm' onSubmit={handleSubmit}>
 
+                        <h5 className='mb-4'>Product Id: {product._id}</h5>
+                        <label className='fw-bold' htmlFor="name">Name</label>
+                        <input placeholder='Product name' id='name' name='name' value={values.name} onChange={handleChange} className='form-control' type="text" /> <br />
+
+                        <label className='fw-bold' htmlFor="">Quantity</label>
                         <input required placeholder='Quantity' name='quantity' value={values.quantity} onChange={handleChange} className='form-control' type="number" /> <br />
 
-                        <input required placeholder='Price' name='price' value={values.price} onChange={handleChange} className='form-control' type='number' /> <br />
+                        <label className='fw-bold' htmlFor="">Price</label>
+                        <input required name='price' value={values.price} onChange={handleChange} className='form-control' type='number' /> <br />
 
-                        <input placeholder='Discount (optional)' name='discount' value={values.discount} onChange={handleChange} className='form-control' type="number" /> <br />
+                        <label className='fw-bold' htmlFor="">Discount %</label>
+                        <input required placeholder='ie. 10' name='discount' value={values.discount} onChange={handleChange} className='form-control' type="number" /> <br />
 
-                        <input required placeholder='Description' name='description' value={values.description} onChange={handleChange} className='form-control' type="textarea" /> <br />
+                        <label className='fw-bold' htmlFor="">Description</label>
+                        <textarea required placeholder='Description' name='description' value={values.description} onChange={handleChange} className='form-control' /> <br />
 
 
+                        <label className='fw-bold' htmlFor="">Photos</label>
                         <div className="photo">
                             {photos} <br />
                             <div className="addPhotoDiv"></div>
-                            <div className='my-3 btn btn-success btn-sm text-center' onClick={add}>Add photo</div> 
-                            
+                            <div className='my-3 btn btn-info btn-sm text-center' onClick={add}>Add photo</div>
+
                         </div>
 
-
-
-                        <select onClick={e => getCatalog(e)} value={values.catalogId} onChange={handleChange} name="catalog" id="">
-                            {catalogOptions}
-                        </select>
-                        <select value={values.catalogId} onChange={handleChange} name="catalog" id="">
-                            {categoryOption}
-                        </select> <br />
-
-                        <button type="submit">Submit</button>
+                        <button className='btn btn-success my-2' type="submit">Update</button>
                         <br />
                     </form>
                 )}
 
             </Formik>
+
+            <hr />
+
+            <div className='properties-section'>
+
+                {mode === 'finishing' ? <CreateFinishingModal id={product._id} open={open} toggle={toggle} /> : ''}
+                {mode === 'size' ? <CreateSizeModal id={product._id} open={open} toggle={toggle} /> : ''}
+                {mode === 'partsInfo' ? <CreatePartsInfoModal id={product._id} open={open} toggle={toggle} /> : ''}
+                {mode === 'custom' ? <CreateCustomModal id={product._id} open={open} toggle={toggle} /> : ''}
+                {mode === 'finishingColor' ? <CreateFinishingColorModal id={product._id} open={open} toggle={toggle} /> : ''}
+                
+                <h2>Add Properties</h2>
+
+            </div>
+
+
+
+            <div onClick={deleteProduct} className='btn btn-danger my-2 w-100'>Delete Product</div>
         </div>
     )
 }
