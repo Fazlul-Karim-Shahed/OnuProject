@@ -8,6 +8,7 @@ import CreateSizeModal from './CreateSizeModal';
 import CreatePartsInfoModal from './CreatePartsInfoModal';
 import CreateCustomModal from './CreateCustomModal';
 import CreateFinishingColorModal from './CreateFinishingColorModal';
+import Properties from './Properties';
 
 export default function ProductDetails() {
 
@@ -139,6 +140,12 @@ export default function ProductDetails() {
                     const formData = updateProductFormData(values)
                     updateOneProductApi(id, formData, deletedPhotoArr).then(data => {
                         console.log(data)
+                        getOneProductApi(id).then(data => {
+                            setProduct(data.value)
+                        })
+                            .catch(err => {
+                                console.log(err);
+                            })
                     })
                         .catch(err => console.log(err))
 
@@ -192,7 +199,7 @@ export default function ProductDetails() {
                 {mode === 'finishingColor' ? <CreateFinishingColorModal id={product._id} open={open} toggle={toggle} /> : ''}
                 
                 <h2>Add Properties</h2>
-
+                <Properties id={product._id} />
             </div>
 
 

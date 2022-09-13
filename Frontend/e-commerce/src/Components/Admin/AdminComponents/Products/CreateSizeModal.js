@@ -1,8 +1,13 @@
 import axios from 'axios'
 import { Formik } from 'formik'
+import { useState } from 'react'
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap'
+import { createSizeApi } from '../../../API/PropertiesApi'
 
 export default function CreateSizeModal(props) {
+
+    const [message, setMessage] = useState('')
+
     return (
         <div>
             <Modal isOpen={props.open} toggle={props.toggle} >
@@ -16,7 +21,14 @@ export default function CreateSizeModal(props) {
                         }}
 
                         onSubmit={values => {
-                            console.log(values)
+                            createSizeApi(values)
+                                .then(data => {
+                                    if (data.error) throw data.message
+                                    setMessage(data.message)
+                                })
+                                .catch(err => {
+                                    setMessage(err)
+                                })
                         }}
                     >
 
@@ -57,6 +69,11 @@ export default function CreateSizeModal(props) {
 
                     </Formik>
                 </ModalBody>
+
+                <ModalFooter className={message === '' ? 'd-none' : 'd-block'}>
+                    <div className='text-center w-75 m-auto fw-bold text-danger'>{message}</div>
+                </ModalFooter>
+
             </Modal>
         </div>
     )

@@ -43,14 +43,14 @@ const SecondLayer = (props) => {
   }
 
   return (
-    <div className="" style={{ backgroundColor: '#AB5337' }} >
+    <div className="" style={{ backgroundColor: '#32363E' }} >
       <div className='container'>
-        <Navbar className='py-2' expand='md'>
+        <Navbar dark className='py-2' expand='md'>
           <NavbarBrand className='m-0 p-0' href='/'> <img className='img-fluid rounded' src={Logo} width='60px' height='auto' alt="" /> </NavbarBrand>
           <NavbarToggler onClick={toggle} className='me-2' />
-          
-          <Collapse isOpen={open} navbar> 
-          <hr className='text-white fw-bolder border'/>
+
+          <Collapse isOpen={open} navbar>
+            <hr className='text-white fw-bolder border' />
             <Nav className='ms-auto my-3' navbar>
               <NavItem className='my-2'>
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/blog' > Blog </Link>

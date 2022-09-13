@@ -1,6 +1,5 @@
 
 
-
 export const createFormData = (obj) => {
 
     let formData = new FormData()

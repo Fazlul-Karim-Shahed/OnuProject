@@ -15,7 +15,7 @@ const FirstLayer = (props) => {
 
     // }
 
-    let layer = <div className='bg-dark text-info FirstLayerContainer'>
+    let layer = <div className='bg-light text-info FirstLayerContainer'>
         <div className="container text-center p-1 d-flex justify-content-between FirstLayerContainer">
             <div>
                 <a className='px-2 text-decoration-none' href="tel: 01312379588"><FontAwesomeIcon className='mt-1' icon={faPhone} /> +88 01312379588</a>

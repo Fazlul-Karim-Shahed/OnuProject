@@ -1,8 +1,13 @@
 import axios from 'axios'
 import { Formik } from 'formik'
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap'
+import { createCustomApi } from '../../../API/PropertiesApi'
+import { useState } from 'react'
 
-export default function createCustomModal(props) {
+export default function CreateCustomModal(props) {
+
+    const [message, setMessage] = useState('')
+
     return (
         <div>
             <Modal isOpen={props.open} toggle={props.toggle} >
@@ -17,7 +22,14 @@ export default function createCustomModal(props) {
                         }}
 
                         onSubmit={values => {
-                            console.log(values)
+                            createCustomApi(values)
+                                .then(data => {
+                                    if (data.error) throw data.message
+                                    setMessage(data.message)
+                                })
+                                .catch(err => {
+                                    setMessage(err)
+                                })
                         }}
                     >
 
@@ -67,6 +79,11 @@ export default function createCustomModal(props) {
 
                     </Formik>
                 </ModalBody>
+
+                <ModalFooter className={message === '' ? 'd-none' : 'd-block'}>
+                    <div className='text-center w-75 m-auto fw-bold text-danger'>{message}</div>
+                </ModalFooter>
+
             </Modal>
         </div>
     )
