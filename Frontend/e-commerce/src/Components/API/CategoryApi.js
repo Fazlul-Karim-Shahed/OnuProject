@@ -11,7 +11,7 @@ export const getCategoryApi = async () => {
 
 export const getCategoryByCatalogApi = async (id) => {
 
-    const data = axios.get(process.env.REACT_APP_BACKEND_URL + '/category/id/' + id)
+    const data = axios.get(process.env.REACT_APP_BACKEND_URL + '/category/catalog-id/' + id)
         .then(data => data.data)
         .catch(err => err)
 

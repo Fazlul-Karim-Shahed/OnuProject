@@ -3,7 +3,28 @@
     color: rgb(255, 255, 255);
 }
 
+.facebook,
+.insta,
+.youtube,
+.twitter {
+    color: white;
+}
+
 .myA:hover {
-    
     color: rgb(199, 220, 219);
+}
+
+.facebook:hover{
+    color: #1773EA;
+}
+.youtube:hover{
+    color: #F60002;
+}
+
+.twitter:hover{
+    color: #1C96E8;
+}
+
+.insta:hover{
+    color: #DC0035;
 }

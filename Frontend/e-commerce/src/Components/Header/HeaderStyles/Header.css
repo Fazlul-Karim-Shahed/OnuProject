@@ -1,0 +1,28 @@
+.headerSticky {
+    position: sticky;
+    top: 0;
+}
+
+.box {
+    display: none;
+}
+
+.total:hover .box {
+    display: block;
+
+}
+
+.subCategoryLink {
+    text-decoration: none;
+}
+
+.subCategoryLink:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 766px) {
+    .headerCatalog {
+        display: none;
+        background-color: blueviolet;
+    }
+}

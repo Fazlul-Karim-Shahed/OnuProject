@@ -1,3 +1,7 @@
 
 export const CHECK_AUTH = 'CHECK_AUTH'
 export const DECODE_TOKEN = 'DECODE_TOKEN'
+export const GET_CATALOG = 'GET_CATALOG'
+export const GET_CATEGORY = 'GET_CATEGORY'
+export const GET_SUBCATEGORY = 'GET_SUBCATEGORY'
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'

@@ -6,7 +6,7 @@ import CatalogCreateModal from './AdminComponents/Catalog/CatalogCreateModal';
 import { Alert } from 'reactstrap'
 import { getCatalogApi } from '../API/CatalogApi';
 
-export default function Catalog() {
+export default function AdminCatalog() {
 
     const [catalog, setCatalog] = useState([])
     const [spin, setSpin] = useState(false)

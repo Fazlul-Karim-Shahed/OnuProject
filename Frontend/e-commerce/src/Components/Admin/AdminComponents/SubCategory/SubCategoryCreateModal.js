@@ -18,7 +18,7 @@ export default function SubCategoryCreateModal(props) {
     const change = (e) => {
 
         if (e.target.name === 'catalogId') {
-            axios.get(process.env.REACT_APP_BACKEND_URL + '/category/id/' + e.target.value)
+            axios.get(process.env.REACT_APP_BACKEND_URL + '/category/catalog-id/' + e.target.value)
                 .then(data => {
                     setCategory(data.data.value)
                     console.log(data.data);

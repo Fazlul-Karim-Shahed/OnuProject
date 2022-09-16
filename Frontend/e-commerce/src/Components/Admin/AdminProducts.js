@@ -4,7 +4,7 @@ import { getAllProductsApi } from '../API/ProductApi'
 import { Card, CardImg, CardImgOverlay, CardFooter } from 'reactstrap'
 import { spinner } from '../Body/Spinner'
 
-export default function Products(props) {
+export default function AdminProducts(props) {
 
   const [products, setProducts] = useState([])
   const [spin, setSpin] = useState(false)
@@ -36,7 +36,7 @@ export default function Products(props) {
       let src = `data:${type};base64,${base64String}`
 
       return (
-        <div key={Math.random()} className='col-3 px-2'>
+        <div key={Math.random()} className='col-2 px-2'>
 
           <Link to={`/admin-panel/products/detail/${item._id}`}>
             <Card >
@@ -45,7 +45,7 @@ export default function Products(props) {
                 <p className='bg-dark text-white d-inline-block px-1 small'>{item.name}</p>
               </CardImgOverlay>
               <CardFooter>
-                <span className=' text-dark text-decoration-none'> category: {item.catalogId.name}</span>
+                <span className=' text-dark text-decoration-none'> Catalog: {item.catalogId.name}</span>
               </CardFooter>
             </Card>
           </Link>

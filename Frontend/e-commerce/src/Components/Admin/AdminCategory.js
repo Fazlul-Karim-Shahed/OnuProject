@@ -7,7 +7,7 @@ import CategoryEditModal from './AdminComponents/Category/CategoryEditModal'
 import { getCatalogApi } from '../API/CatalogApi'
 import { getCategoryApi } from '../API/CategoryApi'
 
-export default function Category() {
+export default function AdminCategory() {
 
     const [catalog, setCatalog] = useState([])
     const [category, setCategory] = useState([])

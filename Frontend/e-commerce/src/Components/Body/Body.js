@@ -4,12 +4,14 @@ import { Routes, Route } from 'react-router-dom'
 import AuthForm from './AuthForm'
 import AdminPanel from '../Admin/AdminPanel'
 import Logout from './Logout'
-import Catalog from '../Admin/Catalog'
-import Category from '../Admin/Category'
-import Subcategory from '../Admin/Subcategory'
-import Products from '../Admin/Products'
-import ProductDetails from '../Admin/AdminComponents/Products/ProductDetails'
-import ProductCreate from '../Admin/AdminComponents/Products/ProductCreate'
+import AdminCatalog from '../Admin/AdminCatalog'
+import AdminCategory from '../Admin/AdminCategory'
+import AdminSubcategory from '../Admin/AdminSubcategory'
+import AdminProducts from '../Admin/AdminProducts'
+import AdminProductDetails from '../Admin/AdminComponents/Products/ProductDetails'
+import AdminProductCreate from '../Admin/AdminComponents/Products/ProductCreate'
+import Home from './Home/Home'
+import Category from './CategoryShow/Category'
 
 const mapStateToProps = (state) => ({
     authenticated: state.authenticated,
@@ -26,12 +28,12 @@ const Body = (props) => {
             adminRoutes =
 
                 <Route path='/admin-panel' element={<AdminPanel />} >
-                    <Route path='catalog' element={<Catalog />} />
-                    <Route path='category' element={<Category />} />
-                    <Route path='subcategory' element={<Subcategory />} />
-                    <Route path='products' element={<Products />} />
-                    <Route path='products/detail/:id' element={<ProductDetails />} />
-                    <Route path='products/create-product' element={<ProductCreate />} />
+                    <Route path='catalog' element={<AdminCatalog />} />
+                    <Route path='category' element={<AdminCategory />} />
+                    <Route path='subcategory' element={<AdminSubcategory />} />
+                    <Route path='products' element={<AdminProducts />} />
+                    <Route path='products/detail/:id' element={<AdminProductDetails />} />
+                    <Route path='products/create-product' element={<AdminProductCreate />} />
                 </Route>
                 
         }
@@ -41,10 +43,11 @@ const Body = (props) => {
     return (
         <div>
             <Routes>
-                <Route path='/' element={<div>Home</div>} />
+                <Route path='/' element={<Home />} />
                 <Route path='/login' element={<AuthForm mode='login' />} />
                 <Route path='/signup' element={<AuthForm mode='signup' />} />
                 <Route path='/logout' element={<Logout />} />
+                <Route path='/catalog/:id' element={<Category />} />
 
                 {adminRoutes}
 

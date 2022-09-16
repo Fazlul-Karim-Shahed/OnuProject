@@ -7,7 +7,7 @@ import { spinner } from '../Body/Spinner'
 import SubCategoryCreateModal from './AdminComponents/SubCategory/SubCategoryCreateModal'
 import SubCategoryEditModal from './AdminComponents/SubCategory/SubCategoryEditModal'
 
-export default function Subcategory(props) {
+export default function AdminSubcategory(props) {
 
   const [spin, setSpin] = useState(false)
   const [category, setCategory] = useState([])
@@ -24,12 +24,16 @@ export default function Subcategory(props) {
     setSpin(true)
     getSubCategoryApi()
       .then(data => {
-        setSubcategory([...data.value])
+        setSubcategory(data.value)
 
         getCatalogApi()
           .then(data => {
-            setCatalog([...data.value])
+            console.log(data.value[0]._id);
+            setCatalog(data.value)
             setSpin(false)
+
+            getCategoryByCatalogApi(data.value[0]._id)
+              .then(data => setCategory([...data.value]))
 
           })
           .catch(err => {
@@ -101,7 +105,7 @@ export default function Subcategory(props) {
   const change = (e) => {
 
     console.log(e.target.value);
-    setSpin(true)
+    // setSpin(true)
     if (e.target.name === 'catalogId') {
       setFilter({
         ...filter,
@@ -124,13 +128,14 @@ export default function Subcategory(props) {
       axios.get(process.env.REACT_APP_BACKEND_URL + `/subcategory/filter/${e.target.value}`)
         .then(data => {
           setSubcategory(data.data.value)
-          console.log(data.data);
+          // console.log(data.data);
           setSpin(false)
         })
 
     }
 
     if (e.target.name === 'categoryId') {
+      console.log(e.target.value);
       setFilter({
         ...filter,
         categoryId: e.target.value
@@ -147,7 +152,7 @@ export default function Subcategory(props) {
         })
     }
 
-    console.log(filter);
+    // console.log(filter);
   }
 
   return (
@@ -155,12 +160,14 @@ export default function Subcategory(props) {
       <div className='d-flex justify-content-between  my-2'>
         <div className='mt-1'>
           <span className='me-3 fw-bold'>Filter by:</span>
+          <label htmlFor="">Catalog: </label>
           <select className='mx-1' value={filter.catalogId} onChange={e => change(e)} name="catalogId" id="">
-            <option>select catalog</option>
+            {/* <option>select catalog</option> */}
             {catalogOptions}
           </select>
+          <label htmlFor="">Category</label>
           <select className='mx-1' value={filter.categoryId} onChange={e => change(e)} name="categoryId" id="">
-            <option>select category</option>
+            {/* <option>select category</option> */}
             {categoryOption}
           </select>
         </div>

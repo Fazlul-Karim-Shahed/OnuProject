@@ -3,9 +3,39 @@
     margin: 0;
     padding: 0;
 }
-.SecondLayerLinkHover {
-    color: rgb(255, 255, 255);
+
+.secondLayerTotal {
+    transition: 0.6s; 
 }
-.SecondLayerLinkHover:hover {
-    color: #D6A553;
+
+.secondLayerTotal:hover {
+    background-color: #32363E;
+}
+
+.secondLayerTotal:hover .SecondLayerLinkHover{
+    color: white;
+}
+
+.secondLayerTotal:hover .SecondLayerLinkHover:hover{
+    color: #d6a553;
+}
+
+.secondLayer {
+    position: sticky;
+    top: 0;
+}
+
+.SecondLayerLinkHover {
+    color: rgb(0, 0, 0);
+}
+
+
+.small-catalog {
+    display: none;
+}
+
+@media only screen and (max-width: 766px) {
+    .small-catalog {
+        display: block;
+    }
 }
