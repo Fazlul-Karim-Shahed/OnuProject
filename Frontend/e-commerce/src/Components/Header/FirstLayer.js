@@ -11,9 +11,6 @@ const mapStateToProps = (state) => ({
 
 const FirstLayer = (props) => {
 
-    // else {
-
-    // }
 
     let layer = <div className='bg-white text-info FirstLayerContainer'>
         <div className="container text-center p-1 d-flex justify-content-between FirstLayerContainer">

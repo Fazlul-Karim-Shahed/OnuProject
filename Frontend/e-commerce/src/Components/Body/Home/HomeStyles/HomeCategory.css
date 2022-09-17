@@ -12,10 +12,7 @@ html,
 body {
     height: 100%;
 }
-body {
-    display: grid;
-    place-items: center;
-}
+
 .page-content {
     display: grid;
     grid-gap: 1rem;
@@ -34,7 +31,7 @@ body {
         grid-template-columns: repeat(4, 1fr);
     }
 }
-.card {
+.homeCategoryCard {
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -49,11 +46,11 @@ body {
         0 16px 16px rgba(0, 0, 0, 0.1);
 }
 @media (min-width: 600px) {
-    .card {
+    .homeCategoryCard {
         height: 350px;
     }
 }
-.card:before {
+.homeCategoryCard:before {
     content: "";
     position: absolute;
     top: 0;
@@ -65,7 +62,7 @@ body {
     transition: transform calc(var(--d) * 1.5) var(--e);
     pointer-events: none;
 }
-.card:after {
+.homeCategoryCard:after {
     content: "";
     display: block;
     position: absolute;
@@ -96,18 +93,34 @@ body {
     transform: translateY(-50%);
     transition: transform calc(var(--d) * 2) var(--e);
 }
-.card:nth-child(1):before {
+.homeCategoryCard:nth-child(1):before {
     background-image: url('../../../../../public/assets/ImageSliderImage/1.jpg');
 }
-.card:nth-child(2):before {
+.homeCategoryCard:nth-child(2):before {
     background-image: url('../../../../../public/assets/ImageSliderImage/2.jpg');
 }
-.card:nth-child(3):before {
+.homeCategoryCard:nth-child(3):before {
     background-image: url('../../../../../public/assets/ImageSliderImage/3.jpg');
 }
-.card:nth-child(4):before {
+.homeCategoryCard:nth-child(4):before {
     background-image: url('../../../../../public/assets/ImageSliderImage/4.jpg');
 }
+
+
+.homeCategoryCard:nth-child(5):before {
+    background-image: url('../../../../../public/assets/ImageSliderImage/1.jpg');
+}
+.homeCategoryCard:nth-child(6):before {
+    background-image: url('../../../../../public/assets/ImageSliderImage/2.jpg');
+}
+.homeCategoryCard:nth-child(7):before {
+    background-image: url('../../../../../public/assets/ImageSliderImage/3.jpg');
+}
+.homeCategoryCard:nth-child(8):before {
+    background-image: url('../../../../../public/assets/ImageSliderImage/4.jpg');
+}
+
+
 .content {
     position: relative;
     display: flex;
@@ -132,7 +145,7 @@ body {
     font-style: italic;
     line-height: 1.35;
 }
-.btn {
+.homeCategoryBtn {
     cursor: pointer;
     margin-top: 1.5rem;
     padding: 0.75rem 1.5rem;
@@ -144,15 +157,15 @@ body {
     background-color: black;
     border: none;
 }
-.btn:hover {
+.homeCategoryBtn:hover {
     background-color: #0d0d0d;
 }
-.btn:focus {
+.homeCategoryBtn:focus {
     outline: 1px dashed yellow;
     outline-offset: 3px;
 }
 @media (hover: hover) and (min-width: 600px) {
-    .card:after {
+    .homeCategoryCard:after {
         transform: translateY(0);
     }
     .content {
@@ -163,32 +176,32 @@ body {
         transform: translateY(1rem);
         transition: transform var(--d) var(--e), opacity var(--d) var(--e);
     }
-    .card:hover,
-    .card:focus-within {
+    .homeCategoryCard:hover,
+    .homeCategoryCard:focus-within {
         align-items: center;
     }
-    .card:hover:before,
-    .card:focus-within:before {
+    .homeCategoryCard:hover:before,
+    .homeCategoryCard:focus-within:before {
         transform: translateY(-4%);
     }
-    .card:hover:after,
-    .card:focus-within:after {
+    .homeCategoryCard:hover:after,
+    .homeCategoryCard:focus-within:after {
         transform: translateY(-50%);
     }
-    .card:hover .content,
-    .card:focus-within .content {
+    .homeCategoryCard:hover .content,
+    .homeCategoryCard:focus-within .content {
         transform: translateY(0);
     }
-    .card:hover .content > *:not(.title),
-    .card:focus-within .content > *:not(.title) {
+    .homeCategoryCard:hover .content > *:not(.title),
+    .homeCategoryCard:focus-within .content > *:not(.title) {
         opacity: 1;
         transform: translateY(0);
         transition-delay: calc(var(--d) / 8);
     }
-    .card:focus-within:before,
-    .card:focus-within:after,
-    .card:focus-within .content,
-    .card:focus-within .content > *:not(.title) {
+    .homeCategoryCard:focus-within:before,
+    .homeCategoryCard:focus-within:after,
+    .homeCategoryCard:focus-within .content,
+    .homeCategoryCard:focus-within .content > *:not(.title) {
         transition-duration: 0s;
     }
 }

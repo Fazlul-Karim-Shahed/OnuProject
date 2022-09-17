@@ -12,6 +12,7 @@ import AdminProductDetails from '../Admin/AdminComponents/Products/ProductDetail
 import AdminProductCreate from '../Admin/AdminComponents/Products/ProductCreate'
 import Home from './Home/Home'
 import Category from './CategoryShow/Category'
+import CategoryProductShow from './CategoryProductShow/CategoryProductShow'
 
 const mapStateToProps = (state) => ({
     authenticated: state.authenticated,
@@ -35,7 +36,7 @@ const Body = (props) => {
                     <Route path='products/detail/:id' element={<AdminProductDetails />} />
                     <Route path='products/create-product' element={<AdminProductCreate />} />
                 </Route>
-                
+
         }
     }
 
@@ -48,6 +49,7 @@ const Body = (props) => {
                 <Route path='/signup' element={<AuthForm mode='signup' />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/catalog/:id' element={<Category />} />
+                <Route path='/category-products/:categoryId' element={<CategoryProductShow />} />
 
                 {adminRoutes}
 

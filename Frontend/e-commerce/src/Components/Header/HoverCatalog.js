@@ -6,7 +6,6 @@ import './HeaderStyles/HoverCatalog.css'
 
 const mapStateToProps = (state) => {
 
-    // console.log(state.category);
     return {
         category: state.category,
         subCategory: state.subCategory
@@ -26,7 +25,7 @@ const HoverCatalog = (props) => {
         let subCategoryShow = subCategory.map(item => {
 
             return (
-                <Link to='#' className='subCategoryLink text-light d-block'>
+                <Link to='#' className='subCategoryLink text-dark d-block'>
                     {item.name}
                 </Link>
             )
@@ -43,7 +42,7 @@ const HoverCatalog = (props) => {
 
 
     return (
-        <div className='row mx-0 my-0 hoverCatalogItem'>
+        <div className='row mx-0 my-0 hoverCatalogItem' >
             {categoryShow}
         </div>
     )

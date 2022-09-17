@@ -16,8 +16,8 @@ const Footer = (props) => {
               <p>Want to receive exclusive furniture offers? Subscribe to our newsletter!</p>
             </div>
             <div className="col-md-6">
-              <input placeholder='Enter email' className='form-control w-75 d-inline-block' type="email" />
-              <button className='btn btn-success ms-1'>Subscribe</button>
+              <input placeholder='Enter email' className='form-control w-75 d-inline-block ' type="email" />
+              <button className='btn btn-success ms-1 m-0'>Subscribe</button>
             </div>
           </div>
 

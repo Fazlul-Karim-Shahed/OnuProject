@@ -1,5 +1,5 @@
 import React from 'react'
-import './HoneycombGrid.css'
+import './HomeStyles/HoneycombGrid.css'
 
 export default function HoneycombGrid() {
 
@@ -48,9 +48,9 @@ export default function HoneycombGrid() {
 
 
     return (
-        <div className=''>
+        <div className='py-5'>
             <div>
-                <h1 className='text-center my-5'>Our Popular Products</h1>
+                <h1 className='text-center'>Buy Furniture Based on Space</h1>
             </div>
             <ul class="honeycomb">
                 
@@ -58,6 +58,8 @@ export default function HoneycombGrid() {
                 <li class="honeycomb-cell honeycomb__placeholder"></li>
 
             </ul>
+
+            <div className='shadow shadow-lg'></div>
         </div>
     )
 }

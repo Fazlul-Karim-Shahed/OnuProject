@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getCategoryByCatalogApi } from '../../API/CategoryApi';
-import { Card, CardBody, CardImg } from 'reactstrap'
+import { Card, CardBody, CardFooter, CardImg } from 'reactstrap'
+import './Category.css'
 
 
 const mapStateToProps = (state) => {
@@ -35,6 +35,7 @@ const Category = (props) => {
 
     let src
     if (photo[0] != undefined) {
+
       let image = photo[0].photo[0]
       let type = image.contentType
       let buff = image.data.data
@@ -44,12 +45,19 @@ const Category = (props) => {
     }
 
     return (
-      <div key={item._id} className='col-6 col-md-2 my-2'>
-        <Card>
-          <CardImg src={src} />
-          <CardBody>
+      <div key={item._id} className='col-6 col-md-2 my-5 m-0 position-relative'>
+        <Card className='categoryCard'>
+          <CardImg className='categoryCardImg' src={src} />
+          <div className='text-center '>
             {item.name}
-          </CardBody>
+            <div className="categoryCardFooter position-absolute top-0 d-flex align-items-center h-100 justify-content-center w-100">
+              <div className='bg-warning p-2'>
+
+                <Link to={`/category-products/${item._id}`} className='text-dark text-decoration-none'>View more</Link>
+              </div>
+            </div>
+          </div>
+
         </Card>
       </div>
     )
@@ -61,8 +69,8 @@ const Category = (props) => {
 
 
   return (
-    <div className='container'>
-      <div className="row">
+    <div className='container '>
+      <div className="row ">
         {categoryShow}
       </div>
     </div>

@@ -1,14 +1,17 @@
 import React from 'react'
-import './ExpandImage.css'
+import './HomeStyles/ExpandImage.css'
 
 export default function ExpandImage() {
     return (
-        <div>
-            <section className='bg-light py-5' style={{ backgroundColor: '#D5D6D1' }}>
-                <h1 className='text-center pt-3'>Your Happiness Our Motivation</h1>
+        <div className=''>
+        
+            <section className='bg-light pb-md-5' style={{ backgroundColor: '#D5D6D1' }}>
+                <h1 className='text-center pt-4 py-md-5'>Your Happiness Our Motivation</h1>
+
                 <div className="rt-container">
                     <div className="col-rt-12">
-                        <div className="Scriptcontent">
+
+                        <div className="ScriptContent">
                             <div className="expandImageContainer">
                                 <div className="wgh-slider">
                                     <input className="wgh-slider-target" type="radio" id="slide-1" name="slider" />
@@ -20,6 +23,7 @@ export default function ExpandImage() {
                                     <div className="wgh-slider__viewport">
                                         <div className="wgh-slider__viewbox">
                                             <div className="wgh-slider__container">
+
 
                                                 <div className="wgh-slider-item">
                                                     <div className="wgh-slider-item__inner">
