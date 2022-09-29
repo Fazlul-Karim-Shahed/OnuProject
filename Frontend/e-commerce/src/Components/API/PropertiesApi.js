@@ -38,14 +38,14 @@ export const createPartsInfoApi = obj => {
 
 export const createCustomApi = obj => {
 
-    const data = axios.post(process.env.REACT_APP_BACKEND_URL + '/properties/size/create', obj)
-        .then(data => data.data)
-        .catch(err => err)
-    return data
+    // const data = axios.post(process.env.REACT_APP_BACKEND_URL + '/properties/size/create', obj)
+    //     .then(data => data.data)
+    //     .catch(err => err)
+    // return data
 
 }
 
-export const getOneProductOnlyProperties = id => {
+export const getOneProductAllProperties = id => {
 
     const data = axios.get(process.env.REACT_APP_BACKEND_URL + '/properties/all-properties/' + id)
         .then(data => data.data)
@@ -54,9 +54,11 @@ export const getOneProductOnlyProperties = id => {
 
 }
 
-export const getOneProductAllProperties = id => {
 
-    const data = axios.get(process.env.REACT_APP_BACKEND_URL + '/product-properties/' + id)
+
+export const getAllPropertiesApi = () => {
+
+    const data = axios.get(process.env.REACT_APP_BACKEND_URL + '/properties/all-properties/' )
         .then(data => data.data)
         .catch(err => err)
     return data

@@ -5,6 +5,7 @@ import SecondLayer from './SecondLayer'
 import { Link } from 'react-router-dom'
 import './HeaderStyles/Header.css'
 import HoverCatalog from './HoverCatalog'
+import { useParams, useNavigate } from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
   authenticated: state.authenticated,
@@ -15,8 +16,8 @@ const mapStateToProps = (state) => ({
 const Header = (props) => {
 
   const [catalogItem, setCatalogItem] = useState('');
-
   let hoverInCatalog = item => setCatalogItem(item)
+
 
 
   let catalogShow = props.catalog.map((i, index) => {
@@ -27,14 +28,17 @@ const Header = (props) => {
     )
   })
 
+  // if (window.location.href.includes('checkout')){
+  //   document.getElementsByClassName('catalogBox')[0].classList.add('d-none')
+  // }
 
 
   window.onscroll = () => {
 
     if (document.documentElement.scrollTop > 80) {
 
-      document.getElementsByClassName('catalogBox')[0].classList.add('position-fixed', 'top-0', 'bg-light', 'w-100')
-      document.getElementsByClassName('catalogBox')[0].style.zIndex = '1'
+      document.getElementsByClassName('catalogBox')[0].classList.add('position-fixed', 'top-0', 'bg-light', 'w-100', 'shadow')
+      document.getElementsByClassName('catalogBox')[0].style.zIndex = '5'
 
     }
     else {
@@ -55,23 +59,20 @@ const Header = (props) => {
       <SecondLayer />
 
       <div className='headerCatalog total catalogBox'>
-        <div className=' container d-flex justify-content-center border-top py-2' >
 
+        <div className='container d-flex justify-content-center border-top py-2' >
           {catalogShow}
-
         </div>
+
         <div className='box w-75 m-auto mt-3' >
           <HoverCatalog item={catalogItem} />
         </div>
-
 
       </div>
 
     </div>
   )
 }
-
-
 
 
 export default connect(mapStateToProps)(Header)

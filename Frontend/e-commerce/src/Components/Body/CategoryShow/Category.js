@@ -45,10 +45,10 @@ const Category = (props) => {
     }
 
     return (
-      <div key={item._id} className='col-6 col-md-2 my-5 m-0 position-relative'>
-        <Card className='categoryCard'>
+      <div key={item._id} className='col-6 col-md-2 m-0 my-4'>
+        <Card className='categoryCard position-relative border'>
           <CardImg className='categoryCardImg' src={src} />
-          <div className='text-center '>
+          <div className='text-center'>
             {item.name}
             <div className="categoryCardFooter position-absolute top-0 d-flex align-items-center h-100 justify-content-center w-100">
               <div className='bg-warning p-2'>
@@ -69,8 +69,8 @@ const Category = (props) => {
 
 
   return (
-    <div className='container '>
-      <div className="row ">
+    <div className='container'>
+      <div className="row my-5">
         {categoryShow}
       </div>
     </div>

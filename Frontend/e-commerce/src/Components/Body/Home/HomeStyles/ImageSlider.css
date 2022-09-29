@@ -1,9 +1,7 @@
-Reset
-* {
+Reset * {
     margin: 0;
     padding: 0;
 }
-
 
 #slider {
     width: 100%;
@@ -52,7 +50,6 @@ Reset
     height: 100%;
 }
 
-
 .legend {
     border: 500px solid transparent;
     border-left: 800px solid rgba(52, 73, 94, 0.7);
@@ -60,7 +57,6 @@ Reset
     position: absolute;
     bottom: 0;
 }
-
 
 .ImageSliderContent {
     width: 100%;
@@ -99,24 +95,33 @@ Reset
 }
 
 @media only screen and (max-width: 766px) {
+    #slider {
+        height: 65vh;
+    }
+    .content-txt {
+        width: 400px;
+        height: 150px;
+        top: 320px;
+    }
 
+    .legend {
+        border: 350px solid transparent;
+        border-left: 400px solid rgba(52, 73, 94, 0.7);
+        border-bottom: 0;
+        position: absolute;
+        bottom: 0;
+    }
     .content-txt {
         width: 80%;
-
     }
 
     .content-txt h2 {
-
-        font-size: 5vw;
-
+        font-size: 4vw;
     }
     .content-txt p {
-
         font-size: 2.3vw;
-
     }
 }
-
 
 .switch {
     width: 120px;
@@ -151,7 +156,6 @@ Reset
     -moz-animation: on 30s infinite;
     animation: on 30s infinite;
 }
-
 
 @-webkit-keyframes slide {
     0%,
@@ -418,7 +422,6 @@ Reset
         margin-left: 45px;
     }
 }
-
 
 a {
     text-decoration: none;

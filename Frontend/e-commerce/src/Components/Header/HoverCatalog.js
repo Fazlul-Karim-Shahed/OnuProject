@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const HoverCatalog = (props) => {
 
 
-    if (props.item === null) return <div className='hoverCatalogItem'></div> 
+    if (props.item === null) return <div className='hoverCatalogItem bg-danger'></div>
 
     let category = props.category.filter(item => item.catalogId._id === props.item._id)
 
@@ -25,7 +25,7 @@ const HoverCatalog = (props) => {
         let subCategoryShow = subCategory.map(item => {
 
             return (
-                <Link to='#' className='subCategoryLink text-dark d-block'>
+                <Link key={Math.random()} to='#' className='subCategoryLink text-dark d-block'>
                     {item.name}
                 </Link>
             )
@@ -33,7 +33,7 @@ const HoverCatalog = (props) => {
 
         return (
             <div key={item._id} className='col-3 hoverCatalogItem'>
-                <div className='fw-bold py-2 border-bottom' style={{ color:'#CC8D20'}}>{item.name}</div>
+                <div className='fw-bold py-2 border-bottom' style={{ color: '#CC8D20' }}>{item.name}</div>
                 <div to='#' className='my-2'>{subCategoryShow}</div>
             </div>
         )

@@ -8,11 +8,19 @@ import AdminCatalog from '../Admin/AdminCatalog'
 import AdminCategory from '../Admin/AdminCategory'
 import AdminSubcategory from '../Admin/AdminSubcategory'
 import AdminProducts from '../Admin/AdminProducts'
-import AdminProductDetails from '../Admin/AdminComponents/Products/ProductDetails'
+import AdminProductDetails from '../Admin/AdminComponents/Products/AdminProductDetails'
 import AdminProductCreate from '../Admin/AdminComponents/Products/ProductCreate'
 import Home from './Home/Home'
 import Category from './CategoryShow/Category'
 import CategoryProductShow from './CategoryProductShow/CategoryProductShow'
+import ProductDetails from './ProductDetails/ProductDetails'
+import AdminProperties from '../Admin/AdminProperties'
+import Cart from './Cart/Cart'
+import CheckOut from './CheckOut/CheckOut'
+import Success from './Payment/Success'
+import Cancel from './Payment/Cancel'
+import Fail from './Payment/Fail'
+
 
 const mapStateToProps = (state) => ({
     authenticated: state.authenticated,
@@ -35,6 +43,7 @@ const Body = (props) => {
                     <Route path='products' element={<AdminProducts />} />
                     <Route path='products/detail/:id' element={<AdminProductDetails />} />
                     <Route path='products/create-product' element={<AdminProductCreate />} />
+                    <Route path='properties' element={<AdminProperties />} />
                 </Route>
 
         }
@@ -50,6 +59,12 @@ const Body = (props) => {
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/catalog/:id' element={<Category />} />
                 <Route path='/category-products/:categoryId' element={<CategoryProductShow />} />
+                <Route path='/products-details/:id' element={<ProductDetails />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/checkout' element={<CheckOut />} />
+                <Route path='/success' element={<Success />} />
+                <Route path='/cancel' element={<Cancel />} />
+                <Route path='/fail' element={<Fail />} />
 
                 {adminRoutes}
 

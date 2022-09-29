@@ -21,28 +21,6 @@ function ImageSlider() {
                                             <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
                                         </div>
                                     </div>
-                                    <div class="image"> <img src="./assets/ImageSliderImage/1.jpg" /> </div>
-                                </div>
-
-                                <div class="slider">
-                                    <div class="legend"></div>
-                                    <div class="ImageSliderContent">
-                                        <div class="content-txt">
-                                            <h2>Lorem ipsum dolor</h2>
-                                            <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
-                                        </div>
-                                    </div>
-                                    <div class="image"> <img src="./assets/ImageSliderImage/2.jpg"/> </div>
-                                </div>
-
-                                <div class="slider">
-                                    <div class="legend"></div>
-                                    <div class="ImageSliderContent">
-                                        <div class="content-txt">
-                                            <h2>Lorem ipsum dolor</h2>
-                                            <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
-                                        </div>
-                                    </div>
                                     <div class="image"> <img src="./assets/ImageSliderImage/2.jpg" /> </div>
                                 </div>
 
@@ -54,7 +32,29 @@ function ImageSlider() {
                                             <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
                                         </div>
                                     </div>
-                                    <div class="image"> <img src="./assets/ImageSliderImage/4.jpg"/> </div>
+                                    <div class="image"> <img src="./assets/ImageSliderImage/1.jpg"/> </div>
+                                </div>
+
+                                <div class="slider">
+                                    <div class="legend"></div>
+                                    <div class="ImageSliderContent">
+                                        <div class="content-txt">
+                                            <h2>Lorem ipsum dolor</h2>
+                                            <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
+                                        </div>
+                                    </div>
+                                    <div class="image"> <img src="./assets/ImageSliderImage/3.jpg" /> </div>
+                                </div>
+
+                                <div class="slider">
+                                    <div class="legend"></div>
+                                    <div class="ImageSliderContent">
+                                        <div class="content-txt">
+                                            <h2>Lorem ipsum dolor</h2>
+                                            <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
+                                        </div>
+                                    </div>
+                                    <div class="image"> <img src="./assets/ImageSliderImage/4.jpeg"/> </div>
                                 </div>
 
                             </div>

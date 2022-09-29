@@ -19,7 +19,7 @@ export default function AdminCategory() {
     useEffect(() => {
 
         setSpin(true)
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem(process.env.REACT_APP_LOCAL_TOKEN_NAME)
         if (token != null) {
 
             getCatalogApi()

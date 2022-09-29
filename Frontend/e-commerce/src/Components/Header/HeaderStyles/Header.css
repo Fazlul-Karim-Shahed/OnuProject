@@ -7,6 +7,10 @@
     display: none;
 }
 
+.total, .box, .headerSticky{
+    transition: .4s linear;
+}
+
 .total:hover .box {
     display: block;
 

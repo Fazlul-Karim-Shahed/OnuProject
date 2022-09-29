@@ -76,6 +76,10 @@ const SecondLayer = (props) => {
               </NavItem>
 
               <NavItem className='my-2'>
+                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/cart' > Cart </Link>
+              </NavItem>
+
+              <NavItem className='my-2'>
                 <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/help' > Help </Link>
               </NavItem>
               {!props.authenticated ? <NavItem className='my-2'>

@@ -27,49 +27,49 @@ export default function ExpandImage() {
 
                                                 <div className="wgh-slider-item">
                                                     <div className="wgh-slider-item__inner">
-                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" src="./assets/image-1.jpg" alt="The 5th Exotic" />
+                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" height='100%' src="./assets/image-1.jpeg" alt="The 5th Exotic" />
                                                             <figcaption className="wgh-slider-item-figure__caption"><a href="www.facebook.com">The 5th Exotic</a><span>Quantic</span></figcaption>
                                                         </figure>
-                                                        <label className="wgh-slider-item__trigger" for="slide-1" title="Show product 1"></label>
+                                                        <label className="wgh-slider-item__trigger" htmlFor="slide-1" title="Show product 1"></label>
                                                     </div>
                                                 </div>
 
                                                 <div className="wgh-slider-item">
                                                     <div className="wgh-slider-item__inner">
-                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" src="./assets/image-2.jpg" alt="The 5th Exotic" />
+                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" height='100%' src="./assets/image-2.jpeg" alt="The 5th Exotic" />
                                                             <figcaption className="wgh-slider-item-figure__caption"><a href="www.facebook.com">The 5th Exotic</a><span>Quantic</span></figcaption>
                                                         </figure>
-                                                        <label className="wgh-slider-item__trigger" for="slide-2" title="Show product 2"></label>
-                                                    </div>
-                                                </div>
-
-
-                                                <div className="wgh-slider-item">
-                                                    <div className="wgh-slider-item__inner">
-                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" src="./assets/image-3.png" alt="The 5th Exotic" />
-                                                            <figcaption className="wgh-slider-item-figure__caption"><a href="www.facebook.com">The 5th Exotic</a><span>Quantic</span></figcaption>
-                                                        </figure>
-                                                        <label className="wgh-slider-item__trigger" for="slide-3" title="Show product 3"></label>
+                                                        <label className="wgh-slider-item__trigger" htmlFor="slide-2" title="Show product 2"></label>
                                                     </div>
                                                 </div>
 
 
                                                 <div className="wgh-slider-item">
                                                     <div className="wgh-slider-item__inner">
-                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" src="./assets/image-4.jpg" alt="The 5th Exotic" />
+                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" height='100%' src="./assets/image-3.jpg" alt="The 5th Exotic" />
                                                             <figcaption className="wgh-slider-item-figure__caption"><a href="www.facebook.com">The 5th Exotic</a><span>Quantic</span></figcaption>
                                                         </figure>
-                                                        <label className="wgh-slider-item__trigger" for="slide-4" title="Show product 4"></label>
+                                                        <label className="wgh-slider-item__trigger" htmlFor="slide-3" title="Show product 3"></label>
                                                     </div>
                                                 </div>
 
 
                                                 <div className="wgh-slider-item">
                                                     <div className="wgh-slider-item__inner">
-                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" src="./assets/image-5.jpg" alt="RYSY - Traveler LP" />
+                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" height='100%' src="./assets/image-4.jpeg" alt="The 5th Exotic" />
+                                                            <figcaption className="wgh-slider-item-figure__caption"><a href="www.facebook.com">The 5th Exotic</a><span>Quantic</span></figcaption>
+                                                        </figure>
+                                                        <label className="wgh-slider-item__trigger" htmlFor="slide-4" title="Show product 4"></label>
+                                                    </div>
+                                                </div>
+
+
+                                                <div className="wgh-slider-item">
+                                                    <div className="wgh-slider-item__inner">
+                                                        <figure className="wgh-slider-item-figure"><img className="wgh-slider-item-figure__image" height='100%' src="./assets/image-5.jpg" alt="RYSY - Traveler LP" />
                                                             <figcaption className="wgh-slider-item-figure__caption"><a href="www.facebook.com">RYSY - Traveler LP</a><span>RYSY</span></figcaption>
                                                         </figure>
-                                                        <label className="wgh-slider-item__trigger" for="slide-5" title="Show product 5"></label>
+                                                        <label className="wgh-slider-item__trigger" htmlFor="slide-5" title="Show product 5"></label>
                                                     </div>
                                                 </div>
                                             </div>

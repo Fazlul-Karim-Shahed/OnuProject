@@ -58,13 +58,12 @@ export default function ProductDetails() {
     }
 
     let photos = product.photo.map((item, index) => {
-        let type = item.contentType
-        let buff = item.data.data
-        const base64String = btoa(String.fromCharCode(...new Uint8Array(buff)));
-        let src = `data:${type};base64,${base64String}`
+
         return (
             <div onMouseOver={() => hoverImg(index)} onMouseOut={() => mouseOutImg(index)} className='position-relative d-inline' key={Math.random()}>
-                <img className='px-1 opacity-100 imageOpc' src={src} width='15%' alt="" />
+                
+                <img className='px-1 opacity-100 imageOpc' src={`${process.env.REACT_APP_BACKEND_URL}/product/${product._id}/${index}`} width='15%' alt="" />
+                
                 <span onClick={() => removeImg(item._id, index)} style={{ cursor: 'pointer', left: '30%', top: '0%' }} className='imgHover position-absolute bg-danger text-white p-2 small d-none'>remove</span>
             </div>
         )
@@ -197,7 +196,7 @@ export default function ProductDetails() {
                 {mode === 'partsInfo' ? <CreatePartsInfoModal id={product._id} open={open} toggle={toggle} /> : ''}
                 {mode === 'custom' ? <CreateCustomModal id={product._id} open={open} toggle={toggle} /> : ''}
                 {mode === 'finishingColor' ? <CreateFinishingColorModal id={product._id} open={open} toggle={toggle} /> : ''}
-                
+
                 <h2>Add Properties</h2>
                 <Properties id={product._id} />
             </div>

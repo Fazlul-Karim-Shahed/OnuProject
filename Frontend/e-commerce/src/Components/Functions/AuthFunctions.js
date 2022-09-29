@@ -3,20 +3,20 @@ import jwtDecode from "jwt-decode"
 
 export const saveToken = (value) => {
 
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem(process.env.REACT_APP_LOCAL_TOKEN_NAME)
     if (token) {
-        localStorage.removeItem('token')
-        localStorage.setItem('token', value)
+        localStorage.removeItem(process.env.REACT_APP_LOCAL_TOKEN_NAME)
+        localStorage.setItem(process.env.REACT_APP_LOCAL_TOKEN_NAME, value)
     }
     else {
-        localStorage.setItem('token', value)
+        localStorage.setItem(process.env.REACT_APP_LOCAL_TOKEN_NAME, value)
     }
 
 }
 
 export const checkAuth = async () => {
 
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem(process.env.REACT_APP_LOCAL_TOKEN_NAME)
     if (token) {
         let data = await jwtDecode(token)
 
@@ -33,7 +33,7 @@ export const checkAuth = async () => {
 
 export const tokenDecode = async () => {
 
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem(process.env.REACT_APP_LOCAL_TOKEN_NAME)
     if (token && checkAuth()) {
         const data = await jwtDecode(token)
         return data

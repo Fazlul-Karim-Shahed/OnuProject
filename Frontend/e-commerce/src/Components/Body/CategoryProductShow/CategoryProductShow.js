@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { Card, CardImg } from 'reactstrap'
+import { Link, useParams } from 'react-router-dom'
+import { base64StringFun } from '../../Functions/Functions'
+import '../BodyStyles/ProductShow.css'
 
 
 const mapStateToProps = (state) => {
-    console.log(state.allProducts)
     return {
         selectedProducts: state.selectedProducts,
         allProducts: state.allProducts
@@ -16,6 +16,7 @@ const CategoryProductShow = (props) => {
 
     const { categoryId } = useParams()
     const [products, setProducts] = useState([])
+    // const [src, setScr] = useState([])
 
     useEffect(() => {
 
@@ -27,29 +28,18 @@ const CategoryProductShow = (props) => {
 
 
 
-    let productShow = products.map(item => {
+    let arr = []
+    let productShow = products.map((item, index) => {
 
         if (item.categoryId._id === categoryId) {
 
-            let src
-            if (item.photo != undefined) {
-
-                let image = item.photo[0]
-                let type = image.contentType
-                let buff = image.data.data
-                const base64String = btoa(String.fromCharCode(...new Uint8Array(buff)));
-                src = `data:${type};base64,${base64String}`
-
-            }
-
-
-
-
             return (
-                <div className='col-md-4 py-2 p-md-4'>
-                    <Card>
-                        <CardImg src={src} width='' />
-                    </Card>
+                <div class="project bg-danger">
+                    <img class="project__image" height='100%' src={`${process.env.REACT_APP_BACKEND_URL}/product/${item._id}/${0}`} />
+                    <h3 class="grid__title fw-bold"> {item.name}</h3>
+                    <div class="grid__overlay">
+                        <button class="viewbutton"><Link to={`/products-details/${item._id}`} className='text-decoration-none text-dark'>Details</Link></button>
+                    </div>
                 </div>
             )
         }
@@ -57,11 +47,21 @@ const CategoryProductShow = (props) => {
 
 
     return (
-        <div className="container py-5">
-            <h2 className='text-center'>{products.length === 0 ? '' : products[0].categoryId.name}</h2>
-            <div className='row'>
+        <div className="container pt-5">
+
+            <h2 className='text-center pb-3'>{products.length === 0 ? '' : products[0].categoryId.name}</h2>
+
+            <section id="portfolio" className='portfolio'>
+
                 {productShow}
-            </div>
+
+                <div class="overlay">
+                    <div class="overlay__inner">
+                        <button class="close">close X</button>
+                        <img />
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }

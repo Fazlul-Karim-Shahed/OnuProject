@@ -9,11 +9,11 @@
 }
 
 .secondLayerTotal:hover {
-    background-color: #32363E;
+    /* background-color: #32363E; */
 }
 
 .secondLayerTotal:hover .SecondLayerLinkHover{
-    color: white;
+    /* color: white; */
 }
 
 .secondLayerTotal:hover .SecondLayerLinkHover:hover{

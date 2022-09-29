@@ -19,11 +19,12 @@ export default function AdminCatalog() {
     useEffect(() => {
 
 
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem(process.env.REACT_APP_LOCAL_TOKEN_NAME)
         if (token != null) {
 
             setSpin(true)
             getCatalogApi().then(data => {
+                console.log('Admin', data);
                 setCatalog([...data.value])
                 setSpin(false)
             })

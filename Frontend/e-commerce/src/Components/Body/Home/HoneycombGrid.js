@@ -7,19 +7,19 @@ export default function HoneycombGrid() {
     let src = [
         {
             description: 'Sample Image',
-            src: './assets/image-1.jpg',
+            src: './assets/image-1.jpeg',
         },
         {
             description: 'Sample Image',
-            src: './assets/image-2.jpg',
+            src: './assets/image-2.jpeg',
         },
         {
             description: 'Sample Image',
-            src: './assets/image-3.png',
+            src: './assets/image-3.jpg',
         },
         {
             description: 'Sample Image',
-            src: './assets/image-4.jpg',
+            src: './assets/image-4.jpeg',
         },
         {
             description: 'Sample Image',
@@ -31,7 +31,7 @@ export default function HoneycombGrid() {
         },
         {
             description: 'Sample Image',
-            src: './assets/image-1.jpg',
+            src: './assets/image-7.png',
         },
     ]
 

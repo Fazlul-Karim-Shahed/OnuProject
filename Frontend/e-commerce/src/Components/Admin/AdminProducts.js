@@ -29,18 +29,12 @@ export default function AdminProducts(props) {
   else {
     product = products.map(item => {
 
-      let image = item.photo[0]
-      let type = image.contentType
-      let buff = image.data.data
-      const base64String = btoa(String.fromCharCode(...new Uint8Array(buff)));
-      let src = `data:${type};base64,${base64String}`
-
       return (
         <div key={Math.random()} className='col-2 px-2'>
 
           <Link to={`/admin-panel/products/detail/${item._id}`}>
             <Card >
-              <CardImg src={src} width='100%' />
+              <CardImg src={`${process.env.REACT_APP_BACKEND_URL}/product/${item._id}/${0}`} width='100%' />
               <CardImgOverlay className='p-1'>
                 <p className='bg-dark text-white d-inline-block px-1 small'>{item.name}</p>
               </CardImgOverlay>

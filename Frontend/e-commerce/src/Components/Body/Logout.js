@@ -9,7 +9,8 @@ const mapStateToProps = (state) => ({})
 
 const Logout = (props) => {
 
-    localStorage.removeItem('token')
+    localStorage.removeItem(process.env.REACT_APP_LOCAL_TOKEN_NAME)
+    localStorage.removeItem(process.env.REACT_APP_LOCAL_STORAGE_CART_NAME)
     const navigate = useNavigate()
     checkAuth().then(data => {
         props.dispatch({

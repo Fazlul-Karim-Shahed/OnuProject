@@ -9,13 +9,15 @@ export default function HomeCategory() {
                 <div class="homeCategoryCard">
                     <div class="content">
                         <h2 class="title">Dinning</h2>
-                        <p class="copy" style={{ visibility: 'hidden' }}>Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p><button class="homeCategoryBtn bg-white text-dark">View All</button>
+                        <p class="copy" style={{ visibility: 'hidden' }}>Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
+                        <button class="homeCategoryBtn bg-white text-dark">View All</button>
                     </div>
                 </div>
                 <div class="homeCategoryCard">
                     <div class="content">
                         <h2 class="title">Kitchen</h2>
-                        <p class="copy" style={{ visibility: 'hidden' }}>Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p><button class="homeCategoryBtn bg-white text-dark">View All</button>
+                        <p class="copy" style={{ visibility: 'hidden' }}>Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
+                        <button class="homeCategoryBtn bg-white text-dark">View All</button>
                     </div>
                 </div>
                 <div class="homeCategoryCard">

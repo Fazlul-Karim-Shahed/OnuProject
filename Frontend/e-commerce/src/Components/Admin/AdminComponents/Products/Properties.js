@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap'
-import { getOneProductAllProperties, getOneProductOnlyProperties } from '../../../API/PropertiesApi'
+import { getOneProductAllProperties, } from '../../../API/PropertiesApi'
 import { Form, Formik } from 'formik'
 import { createFormData } from '../../AdminFunctions/createFormData'
-import { createProductPropertiesApi, deleteProductPropertiesApi } from '../../../API/ProductPropertiesApi'
+import { createProductPropertiesApi, deleteProductPropertiesApi, getOneProductProperties } from '../../../API/ProductPropertiesApi'
 import { Badge, Card, CardImg } from 'reactstrap'
 
 export default function Properties(props) {
@@ -21,15 +21,16 @@ export default function Properties(props) {
 
     useEffect(() => {
 
-        getOneProductOnlyProperties(props.id).then(data => {
+        getOneProductAllProperties(props.id).then(data => {
+
             setFinishing(data.value.finishing)
             setSize(data.value.size)
             setFinishingColor(data.value.finishingColor)
             setPartsInfo(data.value.partsInfo)
         })
 
-        getOneProductAllProperties(props.id).then(data => {
-
+        getOneProductProperties(props.id).then(data => {
+            console.log('getOneProductProperties: ', data);
             setProperties(data.value)
         })
 
@@ -73,23 +74,19 @@ export default function Properties(props) {
     }
 
     const deleteProperty = item => {
-        
+
         if (window.confirm('Are you sure?')) {
-            deleteProductPropertiesApi(item).then(data => getOneProductAllProperties(props.id).then(data => setProperties(data.value)))
+            deleteProductPropertiesApi(item).then(data => getOneProductProperties(props.id).then(data => {
+                console.log('After delete: ', data);
+                setProperties(data.value)
+            }))
         }
     }
-
+    console.log(properties);
     let productProperty = properties === undefined ? <p className='text-center'>No properties found</p> : properties.map(item => {
 
-        let photos = item.photo.map(image => {
-
-            let type = image.contentType
-            let buff = image.data.data
-            const base64String = btoa(String.fromCharCode(...new Uint8Array(buff)));
-            let src = `data:${type};base64,${base64String}`
-
-            return (<img className='img-fluid mx-2' src={src} width='7%' />)
-        })
+        let photos = item.photo.map((image, index) => <img className='img-fluid mx-2' src={`${process.env.REACT_APP_BACKEND_URL}/product-properties/${item._id}/${index}`} width='8%' />)
+        
 
         return (
             <div className='my-3'>
@@ -142,7 +139,10 @@ export default function Properties(props) {
                             createProductPropertiesApi(formData).then(data => {
                                 setMessage(data.message)
 
-                                getOneProductAllProperties(props.id).then(data => setProperties(data.value))
+                                getOneProductProperties(props.id).then(data => {
+                                    console.log('After create: ', data)
+                                    setProperties(data.value)
+                                })
 
                             })
 
