@@ -29,13 +29,14 @@ const SecondLayer = (props) => {
 
   const Logo = 'https://png.pngtree.com/template/20190928/ourmid/pngtree-gold-furniture-lamp-chair-interior-logo-design-template-inspirat-image_312127.jpg'
 
+  let width = window.innerWidth
 
 
 
   let catalog = props.catalog === undefined ? '' : props.catalog.map(item => {
     return (
       <NavItem key={item._id} className='my-2'>
-        <Link className='SecondLayerLinkHover mx-2 text-decoration-none small-catalog' to={`/catalog/${item._id}`}> {item.name} </Link>
+        <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none small-catalog' to={`/catalog/${item._id}`}> {item.name} </Link>
       </NavItem>
     )
   })
@@ -47,7 +48,7 @@ const SecondLayer = (props) => {
     if (props.decodedToken.role === 'admin') {
 
       admin = <NavItem className='my-2'>
-        <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/admin-panel' > Admin panel </Link>
+        <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/admin-panel' > Admin panel </Link>
       </NavItem>
     }
   }
@@ -68,30 +69,35 @@ const SecondLayer = (props) => {
               {catalog}
 
               <NavItem className='my-2'>
-                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/blog' > Blog </Link>
+                <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/blog' > Blog </Link>
               </NavItem>
 
               <NavItem className='my-2'>
-                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/show-locator' > Showroom </Link>
+                <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/show-locator' > Showroom </Link>
               </NavItem>
 
               <NavItem className='my-2'>
-                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/cart' > Cart </Link>
+                <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/cart' > Cart </Link>
               </NavItem>
 
+              {props.authenticated ? <NavItem className='my-2'>
+                <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/order' > Orders </Link>
+              </NavItem> : ''}
+
               <NavItem className='my-2'>
-                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/help' > Help </Link>
+                <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/help' > Help </Link>
               </NavItem>
               {!props.authenticated ? <NavItem className='my-2'>
-                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/login' > Login </Link>
+                <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/login' > Login </Link>
               </NavItem> : ''}
               {!props.authenticated ?
                 <NavItem className='my-2'>
-                  <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/signup' > Signup </Link>
+                  <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/signup' > Signup </Link>
                 </NavItem> : ''}
               {props.authenticated ? <NavItem className='my-2'>
-                <Link className='SecondLayerLinkHover mx-2 text-decoration-none' to='/logout' > Logout </Link>
+                <Link onClick={width < 760 ? toggle : ''} className='SecondLayerLinkHover mx-2 text-decoration-none' to='/logout' > Logout </Link>
               </NavItem> : ''}
+
               {admin}
             </Nav>
           </Collapse>

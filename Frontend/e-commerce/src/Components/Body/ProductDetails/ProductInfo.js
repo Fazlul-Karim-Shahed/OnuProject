@@ -19,13 +19,13 @@ const ProductInfo = (props) => {
     return (
         <div>
             <div className="row py-4">
-                <div className="col-md-4">
+                <div className="col-md-4 small">
                     <div onClick={e => show('description')} style={{ cursor: 'pointer' }} className='py-3 border-bottom'>Description</div>
                     <div onClick={e => show('careInfo')} style={{ cursor: 'pointer' }} className='py-3 border-bottom'>Furniture Care Information</div>
                     <div onClick={e => show('warranty')} style={{ cursor: 'pointer' }} className='py-3 border-bottom'>Warranty</div>
                     <div onClick={e => show('exchange')} style={{ cursor: 'pointer' }} className='py-3 border-bottom'>Exchange & Refund</div>
                 </div>
-                <div className="col-md-8 p-4 py-md-2 px-md-5">
+                <div className="col-md-8 p-4 py-md-2 px-md-5 small">
                     {str === 'description' ? description : ''}
                     {str === 'careInfo' ? careInfo : ''}
                     {str === 'warranty' ? warranty : ''}

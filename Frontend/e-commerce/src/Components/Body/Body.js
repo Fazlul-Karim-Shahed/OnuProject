@@ -8,7 +8,7 @@ import AdminCatalog from '../Admin/AdminCatalog'
 import AdminCategory from '../Admin/AdminCategory'
 import AdminSubcategory from '../Admin/AdminSubcategory'
 import AdminProducts from '../Admin/AdminProducts'
-import AdminProductDetails from '../Admin/AdminComponents/Products/AdminProductDetails'
+import AdminProductDetails from '../Admin/AdminComponents/Products/ProductDetails'
 import AdminProductCreate from '../Admin/AdminComponents/Products/ProductCreate'
 import Home from './Home/Home'
 import Category from './CategoryShow/Category'
@@ -20,6 +20,7 @@ import CheckOut from './CheckOut/CheckOut'
 import Success from './Payment/Success'
 import Cancel from './Payment/Cancel'
 import Fail from './Payment/Fail'
+import Orders from './Orders/Orders'
 
 
 const mapStateToProps = (state) => ({
@@ -65,6 +66,7 @@ const Body = (props) => {
                 <Route path='/success' element={<Success />} />
                 <Route path='/cancel' element={<Cancel />} />
                 <Route path='/fail' element={<Fail />} />
+                <Route path='/order' element={<Orders />} />
 
                 {adminRoutes}
 

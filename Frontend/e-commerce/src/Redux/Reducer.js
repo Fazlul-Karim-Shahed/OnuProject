@@ -14,7 +14,7 @@ const initialState = {
     size: [],
     finishingColor: [],
     partsInfo: [],
-    cart: []
+    cart: [],
 
 }
 

@@ -236,11 +236,11 @@ const Cart = (props) => {
                 <div className="col-md-5 pe-md-5">
                     <div className='d-flex justify-content-between py-3 border-bottom'>
                         <strong>Subtotal: </strong>
-                        <div>{total}</div>
+                        <div>৳ {total}</div>
                     </div>
                     <div className='d-flex justify-content-between py-3 border-bottom'>
                         <strong>Sales Tax: </strong>
-                        <div>0</div>
+                        <div>৳ 0</div>
                     </div>
                     <div className='d-flex justify-content-between py-3 border-bottom'>
                         <strong>Coupon Code: </strong>
@@ -248,7 +248,7 @@ const Cart = (props) => {
                     </div>
                     <div className='d-flex justify-content-between py-3'>
                         <strong>Grand total: </strong>
-                        <div>{total}</div>
+                        <div>৳ {total}</div>
                     </div>
 
                     <div className="row my-4">

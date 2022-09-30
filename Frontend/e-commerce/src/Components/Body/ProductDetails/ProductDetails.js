@@ -300,7 +300,7 @@ const ProductDetails = (props) => {
                     <img src={`${process.env.REACT_APP_BACKEND_URL}/product/${product._id}/${0}`} width='200' alt="" />
                 </div>
 
-                <div className='pt-3'>
+                <div className='pt-3 small'>
                     <p className='fw-bold pb-3'>Why you should buy this product?</p>
                     <p className='fw-bold'>Contemporary Design</p>
                     <p>Lorem ipsum dopedit voluptas nobis rem adipisci illo assumenda, hic maiores unde, in quam, laboriosam veritatis. netur sapiente tempora eum possimus libero dolor delectus.</p>

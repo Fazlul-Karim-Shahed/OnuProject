@@ -73,7 +73,7 @@ const CheckOut = (props) => {
         )
     })
 
-    console.log(props.decodedToken);
+    // console.log(props.decodedToken);
 
     return (
         <div className='container py-5'>
@@ -101,17 +101,22 @@ const CheckOut = (props) => {
                         ...values,
                         total: total,
                         productName: productName.join(','),
-                        cartItem: createCartItemArray(props.cart),
+                        cartItem: [...props.cart],
                         userId: props.decodedToken._id
                     }
                     console.log(newObj)
 
                     createPaymentApi(newObj).then(data => {
                         setSpin(false)
+                        // console.log(data)
+                        if (newObj.payment === 'cashOn') {
+                            navigate('/order')
+                        }
+                        else {
+                            if (data.status === 'SUCCESS') window.location.replace(data.GatewayPageURL);
 
-                        if (data.status === 'SUCCESS') window.location.replace(data.GatewayPageURL);
-
-                        if (data.status === 'FAILED') window.alert(data.failedreason)
+                            if (data.status === 'FAILED') window.alert(data.failedreason)
+                        }
                     })
 
                 }}

@@ -33,6 +33,7 @@ button {
     }
     .project {
         margin: 10px 40px;
+        min-height: 43vh;
 
 }
 }
@@ -79,7 +80,7 @@ button {
     
 }
 .grid__overlay {
-    background: rgba(214, 198, 197, 0.9);
+    background: rgba(214, 198, 197, 0.8);
     height: 100%;
     grid-column: -1;
     grid-row: -1;
