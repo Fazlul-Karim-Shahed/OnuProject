@@ -171,15 +171,16 @@ export default function ProductCreate(props) {
 
                 <input placeholder='Discount (optional)' name='discount' value={state.discount} onChange={e => change(e)} className='form-control' type="number" /> <br />
 
-                <textarea required placeholder='Description' name='description' value={state.description} onChange={e => change(e)} className='form-control'/> <br />
+                <textarea required placeholder='Description' name='description' value={state.description} onChange={e => change(e)} className='form-control' /> <br />
 
 
                 <div className="photo"></div>
                 <div className='my-3 btn btn-success btn-sm text-center' onClick={add}>Add photo</div> <br />
 
                 <button className='btn btn-primary' type="submit">Upload</button>
+                
             </form>
-            {message}
+            <div className='text-danger my-2 fw-bold'>{message}</div>
             {spin ? spinner(true) : ''}
         </div>
     )

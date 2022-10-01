@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Badge, Toast, ToastBody, ToastHeader } from 'reactstrap'
 import OrderDetailsModal from './OrderDetailsModal'
+import { spinner } from '../../Body/Spinner'
 
 
 const mapStateToProps = (state) => {
@@ -13,26 +14,19 @@ const mapStateToProps = (state) => {
     // console.log(state);
     return {
         authenticated: state.authenticated,
-        decodedToken: state.decodedToken
+        decodedToken: state.decodedToken,
+        order: state.order
     }
 }
 
 const Orders = (props) => {
 
-    const [order, setOrder] = useState([])
     const [open, setOpen] = useState(false)
     const [orderDetails, setOrderDetails] = useState(null)
+    const [spin, setSpin] = useState(false)
 
 
-    useEffect(() => {
-
-        if (props.authenticated && props.decodedToken != null) {
-            getOrders(props.decodedToken._id).then(data => setOrder(data.value))
-        }
-
-    }, [props.decodedToken])
-
-    if (order.length === 0 || order === null || order === undefined) return <div className='my-5 text-center'>No order</div>
+    if (props.order.length === 0 || props.order === null || props.order === undefined) return <div className='my-5 text-center'>No order</div>
 
     const toggle = (e, item) => {
         setOrderDetails(item)
@@ -42,7 +36,9 @@ const Orders = (props) => {
 
     }
 
-    let orderShow = order.map(item => {
+    console.log(props.order);
+
+    let orderShow = props.order.map(item => {
 
         return (
             <div className='col-md-6 my-4' key={Math.random()}>
@@ -56,7 +52,6 @@ const Orders = (props) => {
                                 </Badge>
                             </h5>
                         </div>
-
 
                     </ToastHeader>
                     <ToastBody>
@@ -92,7 +87,7 @@ const Orders = (props) => {
             </div>
 
             <OrderDetailsModal orderDetails={orderDetails} open={open} toggle={toggle} />
-
+            {spin === true ? spinner(true) : spinner(false)}
         </div>
     )
 }

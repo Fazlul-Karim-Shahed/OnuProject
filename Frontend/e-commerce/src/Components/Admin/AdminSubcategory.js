@@ -4,8 +4,8 @@ import { getCatalogApi } from '../API/CatalogApi'
 import { getCategoryApi, getCategoryByCatalogApi } from '../API/CategoryApi'
 import { deleteSubCategoryApi, getSubCategoryApi } from '../API/SubCategoryApi'
 import { spinner } from '../Body/Spinner'
-import SubCategoryCreateModal from './AdminComponents/SubCategory/SubCategoryCreateModal'
-import SubCategoryEditModal from './AdminComponents/SubCategory/SubCategoryEditModal'
+import SubCategoryCreateModal from './AdminComponents/AdminSubCategory/SubCategoryCreateModal'
+import SubCategoryEditModal from './AdminComponents/AdminSubCategory/SubCategoryEditModal'
 
 export default function AdminSubcategory(props) {
 

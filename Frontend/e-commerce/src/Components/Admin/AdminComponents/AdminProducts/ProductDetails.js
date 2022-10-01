@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getOneProductApi, updateOneProductApi } from '../../../API/ProductApi';
+import { deleteProductApi, getOneProductApi, updateOneProductApi } from '../../../API/ProductApi';
 import { Formik } from 'formik';
 import { updateProductFormData } from '../../AdminFunctions/createFormData';
 import CreateFinishingModal from './CreateFinishingModal';
@@ -18,6 +18,7 @@ export default function ProductDetails() {
     const [deletedPhotoArr, setDeletedPhotoArr] = useState([])
     const [mode, setMode] = useState('')
     const [open, setOpen] = useState(false)
+    const [message, setMessage] = useState('')
 
     let { id } = useParams()
 
@@ -61,9 +62,9 @@ export default function ProductDetails() {
 
         return (
             <div onMouseOver={() => hoverImg(index)} onMouseOut={() => mouseOutImg(index)} className='position-relative d-inline' key={Math.random()}>
-                
+
                 <img className='px-1 opacity-100 imageOpc' src={`${process.env.REACT_APP_BACKEND_URL}/product/${product._id}/${index}`} width='15%' alt="" />
-                
+
                 <span onClick={() => removeImg(item._id, index)} style={{ cursor: 'pointer', left: '30%', top: '0%' }} className='imgHover position-absolute bg-danger text-white p-2 small d-none'>remove</span>
             </div>
         )
@@ -97,7 +98,11 @@ export default function ProductDetails() {
 
 
     const deleteProduct = () => {
-        alert('Are you sure? ')
+        if (window.confirm('are you sure?')) {
+            deleteProductApi(id).then(data => setMessage(data.message))
+        }
+
+
     }
 
     const toggle = () => setOpen(!open)
@@ -135,10 +140,9 @@ export default function ProductDetails() {
 
                 onSubmit={values => {
 
-                    console.log(deletedPhotoArr)
                     const formData = updateProductFormData(values)
                     updateOneProductApi(id, formData, deletedPhotoArr).then(data => {
-                        console.log(data)
+                        setMessage(data.message)
                         getOneProductApi(id).then(data => {
                             setProduct(data.value)
                         })
@@ -181,6 +185,7 @@ export default function ProductDetails() {
                         </div>
 
                         <button className='btn btn-success my-2' type="submit">Update</button>
+                        <div className='text-success fw-bold'>{message}</div>
                         <br />
                     </form>
                 )}
@@ -204,6 +209,7 @@ export default function ProductDetails() {
 
 
             <div onClick={deleteProduct} className='btn btn-danger my-2 w-100'>Delete Product</div>
+            <div className='text-center text-danger'>{message}</div>
         </div>
     )
 }

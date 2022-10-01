@@ -1,4 +1,4 @@
-import { CHECK_AUTH, DECODE_TOKEN, GET_ALL_PRODUCTS, GET_ALL_PRODUCTS_PROPERTIES, GET_ALL_PROPERTIES, GET_CART, GET_CATALOG, GET_CATEGORY, GET_FINISHING, GET_FINISHING_COLOR, GET_PARTS_INFO, GET_SIZE, GET_SUBCATEGORY } from "./ActionTypes"
+import { CHECK_AUTH, DECODE_TOKEN, GET_ALL_PRODUCTS, GET_ALL_PRODUCTS_PROPERTIES, GET_ALL_PROPERTIES, GET_CART, GET_CATALOG, GET_CATEGORY, GET_FINISHING, GET_FINISHING_COLOR, GET_ORDER, GET_PARTS_INFO, GET_SIZE, GET_SUBCATEGORY } from "./ActionTypes"
 
 const initialState = {
 
@@ -15,6 +15,7 @@ const initialState = {
     finishingColor: [],
     partsInfo: [],
     cart: [],
+    order: []
 
 }
 
@@ -93,6 +94,14 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             cart: action.value
+        }
+    }
+
+    if (action.type === GET_ORDER) {
+
+        return {
+            ...state,
+            order: action.value
         }
     }
 

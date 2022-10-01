@@ -20,6 +20,7 @@ const AdminPanel = (props) => {
           <div className='my-3 border-bottom'><Link className=' text-decoration-none text-black' to='/admin-panel/subcategory'>Sub category</Link></div>
           <div className='my-3 border-bottom'><Link className=' text-decoration-none text-black' to='/admin-panel/products'>Products</Link></div>
           <div className='my-3 border-bottom'><Link className=' text-decoration-none text-black' to='/admin-panel/properties'>Properties</Link></div>
+          <div className='my-3 border-bottom'><Link className=' text-decoration-none text-black' to='/admin-panel/order'>Orders</Link></div>
         </div>
         <div className="col-md-10" >
           <Outlet />

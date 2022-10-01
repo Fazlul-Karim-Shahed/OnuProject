@@ -45,3 +45,14 @@ export const updateOneProductApi = async (id, obj, arr) => {
 }
 
 
+export const deleteProductApi = async (id) => {
+
+    const data = axios.delete(process.env.REACT_APP_BACKEND_URL + '/product/' + id)
+        .then(data => data.data)
+        .catch(err => err)
+    return data
+
+}
+
+
+

@@ -8,8 +8,8 @@ import AdminCatalog from '../Admin/AdminCatalog'
 import AdminCategory from '../Admin/AdminCategory'
 import AdminSubcategory from '../Admin/AdminSubcategory'
 import AdminProducts from '../Admin/AdminProducts'
-import AdminProductDetails from '../Admin/AdminComponents/Products/ProductDetails'
-import AdminProductCreate from '../Admin/AdminComponents/Products/ProductCreate'
+import AdminProductDetails from '../Admin/AdminComponents/AdminProducts/ProductDetails'
+import AdminProductCreate from '../Admin/AdminComponents/AdminProducts/ProductCreate'
 import Home from './Home/Home'
 import Category from './CategoryShow/Category'
 import CategoryProductShow from './CategoryProductShow/CategoryProductShow'
@@ -21,6 +21,8 @@ import Success from './Payment/Success'
 import Cancel from './Payment/Cancel'
 import Fail from './Payment/Fail'
 import Orders from './Orders/Orders'
+import AdminOrders from '../Admin/AdminOrder'
+import SubCategoryProductShow from './SubCategoryProductShow/SubCategoryProductShow'
 
 
 const mapStateToProps = (state) => ({
@@ -45,6 +47,7 @@ const Body = (props) => {
                     <Route path='products/detail/:id' element={<AdminProductDetails />} />
                     <Route path='products/create-product' element={<AdminProductCreate />} />
                     <Route path='properties' element={<AdminProperties />} />
+                    <Route path='order' element={<AdminOrders />} />
                 </Route>
 
         }
@@ -67,6 +70,7 @@ const Body = (props) => {
                 <Route path='/cancel' element={<Cancel />} />
                 <Route path='/fail' element={<Fail />} />
                 <Route path='/order' element={<Orders />} />
+                <Route path='/subcategory/:subcategoryId' element={<SubCategoryProductShow />} />
 
                 {adminRoutes}
 

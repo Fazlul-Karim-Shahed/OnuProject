@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Link, Outlet } from 'react-router-dom'
 import { spinner } from '../Body/Spinner';
-import CatalogCreateModal from './AdminComponents/Catalog/CatalogCreateModal';
+import CatalogCreateModal from './AdminComponents/AdminCatalog/CatalogCreateModal';
 import { Alert } from 'reactstrap'
 import { getCatalogApi } from '../API/CatalogApi';
 

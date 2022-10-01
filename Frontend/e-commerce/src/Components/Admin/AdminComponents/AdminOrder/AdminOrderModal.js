@@ -1,16 +1,22 @@
+import { Formik } from 'formik';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Modal, ModalBody, ModalHeader, Toast, ToastHeader, ToastBody } from 'reactstrap'
+import { cancelOrderApi, updateOrderStatusApi } from '../../../API/OrderApi';
+import { spinner } from '../../../Body/Spinner'
 
-export default function OrderDetailsModal(props) {
+export default function AdminOrdersModal(props) {
 
     let details = props.orderDetails
+    const [message, setMessage] = useState('')
+    const [spin, setSpin] = useState(false)
+
     if (details === null || details === undefined) return <div></div>
 
 
-    console.log(details);
+    console.log(details)
 
-    let cartItemShow = details.cartItem.map((cartItem, index) => {
+    let cartItemShow = details.cartItem.map((cartItem) => {
 
         return (
 
@@ -36,6 +42,13 @@ export default function OrderDetailsModal(props) {
     })
 
 
+    const cancel = () => {
+        setSpin(true)
+        cancelOrderApi(details._id).then(data => {
+            setMessage(data.message)
+            setSpin(false)
+        })
+    }
 
     return (
         <div>
@@ -44,6 +57,51 @@ export default function OrderDetailsModal(props) {
                     <div className=''>Order Details</div>
                 </ModalHeader>
                 <ModalBody>
+
+                    <Toast className='w-100 mb-4'>
+                        <ToastHeader className='bg-light'>Edit</ToastHeader>
+                        <ToastBody>
+                            <Formik
+
+                                initialValues={{
+                                    productStatus: details.productStatus
+                                }}
+
+                                onSubmit={val => {
+                                    setSpin(true)
+                                    updateOrderStatusApi(details._id, val).then(data => {
+                                        setMessage(data.message)
+                                        setSpin(false)
+                                    })
+                                }}
+
+                            >
+
+                                {({ values, handleChange, handleSubmit }) => (
+                                    <form onSubmit={handleSubmit} action="">
+                                        <label className='me-3' htmlFor="">Product Status: </label>
+                                        <select value={values.productStatus} className='form-control w-50 d-inline mx-2' onChange={handleChange} name="productStatus" id="">
+                                            <option selected={details.productStatus === 'processing'} value="processing">Processing</option>
+                                            <option selected={details.productStatus === 'delivered'} value="delivered">Delivered</option>
+                                            <option selected={details.productStatus === 'prepared'} value="prepared">Prepared</option>
+                                            <option selected={details.productStatus === 'received'} value="received">Order Received</option>
+                                        </select>
+                                        <br />
+
+                                        <div className='my-3'>
+                                            <button type="submit" className="btn btn-danger">Update</button>
+                                            <div onClick={cancel} className="btn btn-danger mx-2">Cancel order</div>
+                                        </div>
+
+                                        <div className='text-center mt-3 text-success fw-bold'>{message}</div>
+                                    </form>
+
+                                )}
+                            </Formik>
+
+                        </ToastBody>
+                    </Toast>
+
                     <Toast className='w-100 mb-4'>
                         <ToastHeader className='bg-light'>Order</ToastHeader>
                         <ToastBody>
@@ -57,7 +115,8 @@ export default function OrderDetailsModal(props) {
                         <ToastHeader className='bg-light'>Shipping Information</ToastHeader>
                         <ToastBody>
                             <div className='my-2'><strong>Customer Name:</strong> {details.profile.customerName}</div>
-                            <div className='my-2'><strong>Customer Id:</strong> {details.userId}</div>
+
+                            <div className='my-2'><strong>Customer Id:</strong> {details.userId._id}</div>
                             <div className='my-2'><strong>Email:</strong> {details.profile.email}</div>
                             <div className='my-2'><strong>Phone:</strong> {details.profile.phone}</div>
                             <div className='my-2'><strong>Post Code:</strong> {details.profile.postCode}</div>
@@ -127,9 +186,14 @@ export default function OrderDetailsModal(props) {
 
                             }
                         </ToastBody>
+
                     </Toast>
+
                 </ModalBody>
             </Modal>
+
+            {/* {spin ? spinner(true) : spinner(false)} */}
+            {spinner(spin)}
         </div>
     )
 }

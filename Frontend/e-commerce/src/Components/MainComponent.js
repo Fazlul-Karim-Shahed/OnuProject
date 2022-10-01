@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { connect } from 'react-redux'
-import { CHECK_AUTH, DECODE_TOKEN, GET_ALL_PRODUCTS, GET_ALL_PRODUCTS_PROPERTIES, GET_ALL_PROPERTIES, GET_CART, GET_CATALOG, GET_CATEGORY, GET_SUBCATEGORY } from '../Redux/ActionTypes'
+import { CHECK_AUTH, DECODE_TOKEN, GET_ALL_PRODUCTS, GET_ALL_PRODUCTS_PROPERTIES, GET_ALL_PROPERTIES, GET_CART, GET_CATALOG, GET_CATEGORY, GET_ORDER, GET_SUBCATEGORY } from '../Redux/ActionTypes'
 import { getCatalogApi } from './API/CatalogApi'
-import { getCategoryApi, getCategoryByCatalogApi } from './API/CategoryApi'
+import { getCategoryApi } from './API/CategoryApi'
+import { getOrdersByIdApi } from './API/OrderApi'
 import { getAllProductsApi } from './API/ProductApi'
 import { getAllProductPropertiesApi } from './API/ProductPropertiesApi'
 import { getAllPropertiesApi } from './API/PropertiesApi'
@@ -18,7 +19,6 @@ import Header from './Header/Header'
 
 const mapStateToProps = (state) => {
 
-    // console.log(state);
     return {
         authenticated: state.authenticated,
         decodedToken: state.decodedToken
@@ -39,18 +39,27 @@ const MainComponent = (props) => {
             })
 
             tokenDecode().then(val => {
-
                 props.dispatch({
                     type: DECODE_TOKEN,
                     value: val
                 })
 
-                getCart(data, val).then(data => {
-                    props.dispatch({
-                        type: GET_CART,
-                        value: data.value
+                if (val != null) {
+                    getCart(data, val).then(data => {
+                        props.dispatch({
+                            type: GET_CART,
+                            value: data.value
+                        })
                     })
-                })
+
+                    getOrdersByIdApi(val._id).then(data => {
+                        props.dispatch({
+                            type: GET_ORDER,
+                            value: data.value
+                        })
+
+                    })
+                }
 
             })
 
@@ -58,7 +67,9 @@ const MainComponent = (props) => {
 
 
         getCatalogApi().then(data => {
+
             props.dispatch({
+
                 type: GET_CATALOG,
                 value: data.value
             })
@@ -72,7 +83,7 @@ const MainComponent = (props) => {
         })
 
         getSubCategoryApi().then(data => {
-            setSpin(false)
+
             props.dispatch({
                 type: GET_SUBCATEGORY,
                 value: data.value
@@ -80,6 +91,7 @@ const MainComponent = (props) => {
         })
 
         getAllProductsApi().then(data => {
+            setSpin(false)
             props.dispatch({
                 type: GET_ALL_PRODUCTS,
                 value: data.value

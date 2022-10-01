@@ -24,8 +24,9 @@ const HoverCatalog = (props) => {
         let subCategory = props.subCategory.filter(i => i.categoryId._id === item._id)
         let subCategoryShow = subCategory.map(item => {
 
+            console.log('Sub', item);
             return (
-                <Link key={Math.random()} to='#' className='subCategoryLink text-dark d-block'>
+                <Link key={Math.random()} to={`/subcategory/${item._id}`} className='subCategoryLink text-dark d-block'>
                     {item.name}
                 </Link>
             )
